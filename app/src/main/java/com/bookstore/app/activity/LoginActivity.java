@@ -58,6 +58,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Thêm sự kiện click listener cho signupTextView
+        signupTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void anhXa() {

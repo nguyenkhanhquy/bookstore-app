@@ -15,7 +15,6 @@ import com.bookstore.app.model.User;
 import com.bookstore.app.util.SharedPrefManager;
 import com.bumptech.glide.Glide;
 
-
 public class ProfileActivity extends AppCompatActivity {
     TextView id, userName, fName, userEmail, gender;
     Button btnLogout;

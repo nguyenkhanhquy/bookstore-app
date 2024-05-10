@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/pagebkg">
+    android:background="@drawable/pagebkg"
+    tools:context=".activity.RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
+                android:text="Register"
                 android:textSize="36sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
@@ -60,8 +61,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Sign Up"
-                android:id="@+id/signup_button"
+                android:text="Register"
+                android:id="@+id/registerButton"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/lavender"
