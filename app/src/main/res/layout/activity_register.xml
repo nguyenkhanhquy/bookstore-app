@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="174dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="179dp"
         android:text="BookStore"
         android:textAllCaps="true"
@@ -34,7 +34,7 @@
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,10 +66,10 @@
         app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <LinearLayout
-        android:layout_width="414dp"
-        android:layout_height="452dp"
+        android:layout_width="420dp"
+        android:layout_height="540dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="1dp"
         android:orientation="vertical"
         android:paddingLeft="50dp"
@@ -82,12 +82,12 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Họ"
+            android:text="Tên đăng nhập"
             android:textColor="@color/xanh_nhat_background"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtHo"
+            android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -97,12 +97,12 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên"
+            android:text="Họ và tên"
             android:textColor="@color/xanh_nhat_background"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtTen"
+            android:id="@+id/edtHoVaTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -174,6 +174,21 @@
             android:inputType="phone" />
 
         <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtDiaChi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,7 +201,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/textView9"
@@ -201,10 +216,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="textPassword" />
 
         <TextView
-            android:id="@+id/txtLoiMK"
+            android:id="@+id/txtLoi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
