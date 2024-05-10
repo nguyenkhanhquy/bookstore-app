@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CustomerDTO {
+public class UserDTO {
 
     @SerializedName("error")
     private boolean error;
@@ -17,6 +17,6 @@ public class CustomerDTO {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("customer")
-    private Customer customer;
+    @SerializedName("user")
+    private User user;
 }

@@ -13,8 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.CustomerDTO;
-import com.bookstore.app.service.CustomerAPIService;
+import com.bookstore.app.model.UserDTO;
+import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.util.SharedPrefManager;
 
@@ -24,8 +24,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private CustomerAPIService customerAPIService;
-    private CustomerDTO customerDTO;
+    private UserAPIService userAPIService;
+    private UserDTO userDTO;
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
@@ -69,17 +69,17 @@ public class LoginActivity extends AppCompatActivity {
 
     // Đăng nhập khi nhấn nút đăng nhập
     private void login(String userName, String password) {
-        customerAPIService = RetrofitClient.getRetrofit().create(CustomerAPIService.class);
-        customerAPIService.login(userName, password).enqueue(new Callback<CustomerDTO>() {
+        userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
+        userAPIService.login(userName, password).enqueue(new Callback<UserDTO>() {
             @Override
-            public void onResponse(Call<CustomerDTO> call, Response<CustomerDTO> response) {
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
                 if (response.isSuccessful()) {
-                    customerDTO = response.body();
-                    if (customerDTO != null) {
+                    userDTO = response.body();
+                    if (userDTO != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
-                        Toast.makeText(LoginActivity.this, customerDTO.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("Customer", customerDTO.getCustomer().toString());
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(customerDTO.getCustomer());
+                        Toast.makeText(LoginActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("User", userDTO.getUser().toString());
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(userDTO.getUser());
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         finish();
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CustomerDTO> call, Throwable t) {
+            public void onFailure(Call<UserDTO> call, Throwable t) {
                 // Xử lý khi có lỗi xảy ra trong quá trình gọi API
                 Log.e("API Error", "Failed: " + t.getMessage());
             }

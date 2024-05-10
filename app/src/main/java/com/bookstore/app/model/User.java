@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Customer {
+public class User {
 
     private int id;
     private String userName;
@@ -19,4 +19,5 @@ public class Customer {
     private String images;
     private String password;
     private String address;
+    private Role role;
 }

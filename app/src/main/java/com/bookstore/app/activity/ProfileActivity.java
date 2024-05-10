@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.Customer;
+import com.bookstore.app.model.User;
 import com.bookstore.app.util.SharedPrefManager;
 import com.bumptech.glide.Glide;
 
@@ -35,14 +35,14 @@ public class ProfileActivity extends AppCompatActivity {
             btnLogout = findViewById(R.id.buttonLogout);
             imageViewprofile = findViewById(R.id.imageViewProfile);
 
-            Customer customer = SharedPrefManager.getInstance(this).getCustomer();
-            id.setText(String.valueOf(customer.getId()));
-            userEmail.setText(customer.getEmail());
-            fName.setText(customer.getFullName());
-            gender.setText(customer.getGender());
-            userName.setText(customer.getUserName());
+            User user = SharedPrefManager.getInstance(this).getUser();
+            id.setText(String.valueOf(user.getId()));
+            userEmail.setText(user.getEmail());
+            fName.setText(user.getFullName());
+            gender.setText(user.getGender());
+            userName.setText(user.getUserName());
             Glide.with(getApplicationContext())
-                    .load(customer.getImages())
+                    .load(user.getImages())
                     .into(imageViewprofile);
 
             btnLogout.setOnClickListener(new View.OnClickListener() {
