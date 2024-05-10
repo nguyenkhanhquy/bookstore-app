@@ -9,4 +9,6 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="xanh_nhat_background">#072B60</color>
+    <color name="xanh_chu_de">#2d82b5</color>
 </resources>

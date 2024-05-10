@@ -1,86 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/pagebkg"
+    android:background="@color/white"
     tools:context=".activity.RegisterActivity">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnDangKy"
+        android:layout_width="241dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/dam_background"
+        android:text="ĐĂNG KÝ"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="179dp"
+        android:text="BookStore"
+        android:textAllCaps="true"
+        android:textColor="#015C92"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="86dp"
+        android:layout_marginBottom="23dp"
+        android:text="Bạn đã có tài khoản? "
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDangNhap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="23dp"
+        android:text="Đăng nhập ngay"
+        android:textColor="#015C92"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
+
+    <LinearLayout
+        android:layout_width="414dp"
+        android:layout_height="452dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Họ"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtHo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtTen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/custom_edittext">
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Register"
-                android:textSize="36sp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/lavender"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/signup_email"
-                android:background="@drawable/custom_edittext"
-                android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:hint="Email"
-                android:drawableLeft="@android:drawable/sym_action_email"
-                android:drawablePadding="8dp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/signup_password"
-                android:background="@drawable/custom_edittext"
-                android:layout_marginTop="20dp"
-                android:padding="8dp"
-                android:hint="Password"
-                android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-                android:drawablePadding="8dp"
-                android:textColor="@color/black"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Register"
-                android:id="@+id/registerButton"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/lavender"
-                app:cornerRadius = "20dp"/>
-
-            <TextView
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/loginRedirectText"
-                android:text="Already an user? Login"
-                android:layout_gravity="center"
-                android:padding="8dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/lavender"
-                android:textSize="18sp"/>
+                android:paddingRight="10dp"
+                android:text="Giới tính"
+                android:textColor="@color/xanh_nhat_background"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radNam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:text="Nam" />
+
+                <RadioButton
+                    android:id="@+id/radNu"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nữ" />
+            </RadioGroup>
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtSDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mật khẩu"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtMK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xác nhận mật khẩu"
+            android:textColor="@color/xanh_nhat_background"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtXNMK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/txtLoiMK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#E81616" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

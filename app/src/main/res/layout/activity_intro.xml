@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.IntroActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="404dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/intro" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Khám Phá Thế Giới \n Trong Từng Trang Sách"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="Mỗi Cuốn Sách - Một Hành Trình Mới \n BookStore đồng hành cùng bạn trên mỗi trang sách"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/btnDangNhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/dam_background"
+        android:text="Đăng nhập"
+        android:textSize="20sp"
+        app:backgroundTint="@null" />
+
+    <Button
+        android:id="@+id/btnDangKy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/nhat_background"
+        android:text="Tạo tài khoản mới"
+        android:textSize="20sp"
+        android:textColor="@color/xanh_nhat_background"
+        app:backgroundTint="@null" />
+</LinearLayout>

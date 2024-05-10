@@ -1,10 +1,13 @@
 package com.bookstore.app.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,81 +27,103 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private UserAPIService userAPIService;
-    private UserDTO userDTO;
-    private EditText usernameEditText;
-    private EditText passwordEditText;
-    private Button loginButton;
-    private TextView signupTextView;
+    UserAPIService userAPIService;
+    UserDTO userDTO;
+    private TextView txtDangKy, txtLoi;
+    private EditText edtUserName, edtMatKhau;
+    private Button btnDangNhap;
+    String userName, password;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
-
-        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
-        }
+        overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
 
         anhXa();
+        progressDialog = new ProgressDialog(this);
+        initListener();
+    }
 
-        // Thêm sự kiện click listener cho nút "Login"
-        loginButton.setOnClickListener(new View.OnClickListener() {
+    private void anhXa() {
+        txtDangKy = findViewById(R.id.txtDangKy);
+        edtUserName = findViewById(R.id.edtUserName);
+        edtMatKhau = findViewById(R.id.edtMatKhau);
+        btnDangNhap = findViewById(R.id.btnDangNhap);
+        txtLoi = findViewById(R.id.txtLoi);
+        txtLoi.setText("");
+    }
+
+    public void initListener() {
+        btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = usernameEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
+                userName = edtUserName.getText().toString();
+                password = edtMatKhau.getText().toString();
 
                 // Kiểm tra null trước khi gọi API
                 if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(password)) {
                     login(userName, password);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Username or password cannot be empty", Toast.LENGTH_SHORT).show();
+                    txtLoi.setText("Vui lòng điền đầy đủ thông tin!");
                 }
             }
         });
 
-        // Thêm sự kiện click listener cho signupTextView
-        signupTextView.setOnClickListener(new View.OnClickListener() {
+        txtDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
+
+        edtUserName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtLoi.setText("");
+            }
+        });
+
+        edtMatKhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtLoi.setText("");
+            }
+        });
     }
 
-    private void anhXa() {
-        usernameEditText = findViewById(R.id.username);
-        passwordEditText = findViewById(R.id.password);
-        loginButton = findViewById(R.id.loginButton);
-        signupTextView = findViewById(R.id.signupText);
-    }
-
-    // Đăng nhập khi nhấn nút đăng nhập
+    // Hàm đăng nhập
     private void login(String userName, String password) {
+        progressDialog.setMessage("Đang xử lý...");
+        progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
         userAPIService.login(userName, password).enqueue(new Callback<UserDTO>() {
             @Override
             public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                progressDialog.dismiss();
                 if (response.isSuccessful()) {
                     userDTO = response.body();
                     if (userDTO != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
-                        Toast.makeText(LoginActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("User", userDTO.getUser().toString());
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(userDTO.getUser());
-                        Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-                        finish();
+                        if(userDTO.isError()) {
+                            txtLoi.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
+                        } else {
+                            Log.d("User", userDTO.getUser().toString());
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(userDTO.getUser());
+                            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     } else {
                         // Xử lý khi API trả về null
                         Toast.makeText(LoginActivity.this, "Failed to get response from server", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Xử lý khi gọi API không thành công
-                    Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                     int statusCode = response.code();
                     Log.e("API Error", "Status code: " + statusCode);
                 }

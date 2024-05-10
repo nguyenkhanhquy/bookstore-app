@@ -1,10 +1,16 @@
 package com.bookstore.app.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,42 +29,77 @@ public class RegisterActivity extends AppCompatActivity {
 
     private UserAPIService userAPIService;
     private UserDTO userDTO;
-    private Button registerButton;
+    private TextView txtDangNhap, txtLoiMk;
+    private EditText edtHo, edtTen, edtEmail, edtSDT, edtMK, edtXNMK;
+    private RadioButton radNam, radNu;
+    private Button btnDangKy;
+    private String email, password, confirmPass, firstName, lastName, phone;
+    private int gender;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
+        overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
 
         anhXa();
+        progressDialog = new ProgressDialog(this);
+        initListener();
+    }
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+    private void anhXa() {
+        txtDangNhap = findViewById(R.id.txtDangNhap);
+        edtHo = findViewById(R.id.edtHo);
+        edtTen = findViewById(R.id.edtTen);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtSDT = findViewById(R.id.edtSDT);
+        edtMK = findViewById(R.id.edtMK);
+        edtXNMK = findViewById(R.id.edtXNMK);
+        txtLoiMk = findViewById(R.id.txtLoiMK);
+        radNam = findViewById(R.id.radNam);
+        radNu = findViewById(R.id.radNu);
+        btnDangKy = findViewById(R.id.btnDangKy);
+    }
+
+    public void initListener() {
+        btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user = new User();
                 user.setUserName("quy1");
-                user.setEmail("quy2@gmail.com");
+                user.setEmail("quy1@gmail.com");
                 user.setGender("nam");
                 user.setImages("https://app.iotstar.vn/shoppingapp/upload/java1.jpg");
                 user.setPassword("1234");
                 user.setFullName("Nguyễn Khánh Quy");
                 user.setAddress("Hồ Chí Minh");
+                user.setPhone("0333150136");
 
                 register(user);
             }
         });
+
+        txtDangNhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void anhXa() {
-        registerButton = findViewById(R.id.registerButton);
-    }
-
-    // Đăng ký khi nhấn nút đăng ký
+    // Hàm đăng ký
     private void register(User user) {
+        progressDialog.setMessage("Đang xử lý...");
+        progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
         userAPIService.register(user).enqueue(new Callback<UserDTO>() {
             @Override
             public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                progressDialog.dismiss();
                 if (response.isSuccessful()) {
                     userDTO = response.body();
                     if (userDTO != null) {
