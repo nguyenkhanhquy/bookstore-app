@@ -11,4 +11,82 @@
     <color name="teal_700">#FF018786</color>
     <color name="xanh_nhat_background">#072B60</color>
     <color name="xanh_chu_de">#2d82b5</color>
+    <color name="primary">#1C2E46</color>
+    <color name="primary_dark">#142232</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="input_background">#ECECEC</color>
+    <color name="icon_background">#20FFFFFF</color>
+    <color name="error">#B00020</color>
+    <color name="received_message_background">#090D16</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="teal">#008080</color>
+
+    <color name="btnSignUp">#039BE5</color>
+    <color name="btnSigIn">#039BE5</color>
+
+    <color name="grey">#808080</color>
+    <color name="overlayBackground">#1f3f4e</color>
+    <color name="overlayActionBar">#0e0d0e</color>
+
+    <color name="colorPrimaryBlue">#49BEFF</color>
+    <color name="colorPrimaryBlueDark">#65DCE5</color>
+    <color name="colorAccentBlue">#0D5D98</color>
+    <color name="colorAddress">#2F7092</color>
+    <color name="colorHeadings">#3797CF</color>
+    <color name="colorGradEnd">#67EFC8</color>
+    <color name="colorGradStart">#63C9FF</color>
+
+    <color name="bgRowBackground">#D35400</color>
+    <color name="colorYellow">#FFFF34</color>
+    <color name="colorMid">#FFFF70</color>
+    <color name="colorPink">#FFDBB7</color>
+    <color name="blue2">#93D2ED</color>
+    <color name="darkblue">#75A8BD</color>
+    <color name="blue3">#75A8BD</color>
+    <color name="blue4">#466471</color>
+
+    <color name="colorGold1">#ffd700</color>
+    <color name="colorGold2">#eec900</color>
+    <color name="colorGold3">#ffc125</color>
+    <color name="colorYellow1">#ffff00</color>
+    <color name="colorYellow2">#eeee00</color>
+    <color name="fbutton_default_color">#3eadeb</color>
+    <color name="fbutton_default_shadow_color">#ff3493c8</color>
+    //Color Swatches provided by http://designmodo.github.io/Flat-UI/
+    <color name="fbutton_color_turquoise">#1abc9c</color>
+    <color name="fbutton_color_green_sea">#16a085</color>
+    <color name="fbutton_color_emerald">#2ecc71</color>
+    <color name="fbutton_color_nephritis">#27ae60</color>
+    <color name="fbutton_color_peter_river">#3498db</color>
+    <color name="fbutton_color_belize_hole">#2980b9</color>
+    <color name="fbutton_color_amethyst">#9b59b6</color>
+    <color name="fbutton_color_wisteria">#8e44ad</color>
+    <color name="fbutton_color_wet_asphalt">#34495e</color>
+    <color name="fbutton_color_midnight_blue">#2c3e50</color>
+    <color name="fbutton_color_sun_flower">#f1c40f</color>
+    <color name="fbutton_color_orange">#f39c12</color>
+    <color name="fbutton_color_carrot">#e67e22</color>
+    <color name="fbutton_color_pumpkin">#d35400</color>
+    <color name="fbutton_color_alizarin">#e74c3c</color>
+    <color name="fbutton_color_pomegranate">#c0392b</color>
+    <color name="fbutton_color_clouds">#ecf0f1</color>
+    <color name="fbutton_color_silver">#bdc3c7</color>
+    <color name="fbutton_color_concrete">#95a5a6</color>
+    <color name="fbutton_color_asbestos">#7f8c8d</color>
+    <color name="fbutton_color_transparent">@android:color/transparent</color>
+    <color name="colorPrimary">#DB3022</color>
+    <color name="colorPrimaryWithHalfTrans">#16DB3022</color>
+    <color name="WhiteText">#F7F7F7</color>
+    <color name="colorPrimaryDark">#D82B1D</color>
+    <color name="colorAccent">#FF3636</color>
+    <color name="White">#FFFF</color>
+    <color name="textColor">#000000</color>
+    <color name="BgLayout">#F8F5F2</color>
+    <color name="Green">#43A047</color>
+    <color name="Grey">#FBFBFB</color>
+    <color name="GreyV2">#BABABA</color>
+    <color name="transparent">#00000000</color>
+    <color name="Gold">#FAC213</color>
 </resources>

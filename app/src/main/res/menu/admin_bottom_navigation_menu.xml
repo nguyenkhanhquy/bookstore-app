@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_page"
+        android:enabled="true"
+        android:icon="@drawable/settings"
+        android:title="Products"/>
+    <item
+        android:id="@+id/order_page"
+        android:enabled="true"
+        android:icon="@drawable/order"
+        android:title="Orders"/>
+    <item
+        android:id="@+id/profile_page"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="@string/user"/>
+</menu>
