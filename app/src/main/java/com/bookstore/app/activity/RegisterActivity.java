@@ -46,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         anhXa();
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Đang xử lý...");
         initListener();
     }
 
@@ -69,11 +70,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (CheckInfo()) {
+                    if (radNam.isChecked()) {
+                        gender = "Nam";
+                    } else {
+                        gender = "Nữ";
+                    }
+
                     User user = new User();
                     user.setUserName(userName);
                     user.setEmail(email);
                     user.setGender(gender);
-                    user.setImages("https://app.iotstar.vn/shoppingapp/upload/java1.jpg");
                     user.setPassword(password);
                     user.setFullName(fullName);
                     user.setAddress(address);
@@ -102,22 +108,19 @@ public class RegisterActivity extends AppCompatActivity {
         phone = edtSDT.getText().toString().trim();
         address = edtDiaChi.getText().toString().trim();
 
-        if (userName.isEmpty() || fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+        if (userName.isEmpty() || fullName.isEmpty() || email.isEmpty() ||
+                phone.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+            txtLoi.setText("Vui lòng điền đầy đủ thông tin");
+            return false;
+        } else if (!radNam.isChecked() && !radNu.isChecked()) {
             txtLoi.setText("Vui lòng điền đầy đủ thông tin");
             return false;
         } else if (edtMK.getText().length() < 8) {
             txtLoi.setText("Mật khẩu phải chứa ít nhất 8 ký tự");
             return false;
-        } else if (!radNam.isChecked() && !radNu.isChecked()) {
-            txtLoi.setText("Vui lòng điền đầy đủ thông tin");
-            return false;
         } else if (!password.equals(confirmPass)) {
             txtLoi.setText("Xác nhận mật khẩu không trùng khớp");
             return false;
-        } else if (radNam.isChecked()) {
-            gender = "Nam";
-        } else {
-            gender = "Nữ";
         }
 
         return true;
@@ -125,7 +128,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Hàm đăng ký
     private void register(User user) {
-        progressDialog.setMessage("Đang xử lý...");
         progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
         userAPIService.register(user).enqueue(new Callback<UserDTO>() {
@@ -158,6 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
+                progressDialog.dismiss();
                 // Xử lý khi có lỗi xảy ra trong quá trình gọi API
                 Log.e("API Error", "Failed: " + t.getMessage());
             }

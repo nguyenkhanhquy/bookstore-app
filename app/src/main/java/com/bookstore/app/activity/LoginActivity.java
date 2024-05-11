@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         anhXa();
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Đang xử lý...");
         initListener();
     }
 
@@ -98,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
 
     // Hàm đăng nhập
     private void login(String userName, String password) {
-        progressDialog.setMessage("Đang xử lý...");
         progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
         userAPIService.login(userName, password).enqueue(new Callback<UserDTO>() {
@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
+                progressDialog.dismiss();
                 // Xử lý khi có lỗi xảy ra trong quá trình gọi API
                 Log.e("API Error", "Failed: " + t.getMessage());
             }
