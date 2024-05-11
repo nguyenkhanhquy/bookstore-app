@@ -29,12 +29,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private UserAPIService userAPIService;
     private UserDTO userDTO;
-    private TextView txtDangNhap, txtLoiMk;
-    private EditText edtHo, edtTen, edtEmail, edtSDT, edtMK, edtXNMK;
+    private TextView txtDangNhap, txtLoi;
+    private EditText edtUserName, edtHoVaTen, edtEmail, edtSDT, edtDiaChi, edtMK, edtXNMK;
     private RadioButton radNam, radNu;
     private Button btnDangKy;
-    private String email, password, confirmPass, firstName, lastName, phone;
-    private int gender;
+    private String email, password, confirmPass, fullName, userName, phone, address, gender;
     private ProgressDialog progressDialog;
 
     @Override
@@ -47,18 +46,20 @@ public class RegisterActivity extends AppCompatActivity {
 
         anhXa();
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Đang xử lý...");
         initListener();
     }
 
     private void anhXa() {
         txtDangNhap = findViewById(R.id.txtDangNhap);
-        edtHo = findViewById(R.id.edtHo);
-        edtTen = findViewById(R.id.edtTen);
+        edtUserName = findViewById(R.id.edtUserName);
+        edtHoVaTen = findViewById(R.id.edtHoVaTen);
         edtEmail = findViewById(R.id.edtEmail);
         edtSDT = findViewById(R.id.edtSDT);
+        edtDiaChi = findViewById(R.id.edtDiaChi);
         edtMK = findViewById(R.id.edtMK);
         edtXNMK = findViewById(R.id.edtXNMK);
-        txtLoiMk = findViewById(R.id.txtLoiMK);
+        txtLoi = findViewById(R.id.txtLoi);
         radNam = findViewById(R.id.radNam);
         radNu = findViewById(R.id.radNu);
         btnDangKy = findViewById(R.id.btnDangKy);
@@ -68,17 +69,24 @@ public class RegisterActivity extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                user.setUserName("quy1");
-                user.setEmail("quy1@gmail.com");
-                user.setGender("nam");
-                user.setImages("https://app.iotstar.vn/shoppingapp/upload/java1.jpg");
-                user.setPassword("1234");
-                user.setFullName("Nguyễn Khánh Quy");
-                user.setAddress("Hồ Chí Minh");
-                user.setPhone("0333150136");
+                if (CheckInfo()) {
+                    if (radNam.isChecked()) {
+                        gender = "Nam";
+                    } else {
+                        gender = "Nữ";
+                    }
 
-                register(user);
+                    User user = new User();
+                    user.setUserName(userName);
+                    user.setEmail(email);
+                    user.setGender(gender);
+                    user.setPassword(password);
+                    user.setFullName(fullName);
+                    user.setAddress(address);
+                    user.setPhone(phone);
+
+                    register(user);
+                }
             }
         });
 
@@ -91,9 +99,35 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    public boolean CheckInfo() {
+        email = edtEmail.getText().toString().trim();
+        password = edtMK.getText().toString().trim();
+        confirmPass = edtXNMK.getText().toString().trim();
+        fullName = edtHoVaTen.getText().toString().trim();
+        userName = edtUserName.getText().toString().trim();
+        phone = edtSDT.getText().toString().trim();
+        address = edtDiaChi.getText().toString().trim();
+
+        if (userName.isEmpty() || fullName.isEmpty() || email.isEmpty() ||
+                phone.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+            txtLoi.setText("Vui lòng điền đầy đủ thông tin");
+            return false;
+        } else if (!radNam.isChecked() && !radNu.isChecked()) {
+            txtLoi.setText("Vui lòng điền đầy đủ thông tin");
+            return false;
+        } else if (edtMK.getText().length() < 8) {
+            txtLoi.setText("Mật khẩu phải chứa ít nhất 8 ký tự");
+            return false;
+        } else if (!password.equals(confirmPass)) {
+            txtLoi.setText("Xác nhận mật khẩu không trùng khớp");
+            return false;
+        }
+
+        return true;
+    }
+
     // Hàm đăng ký
     private void register(User user) {
-        progressDialog.setMessage("Đang xử lý...");
         progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
         userAPIService.register(user).enqueue(new Callback<UserDTO>() {
@@ -106,9 +140,12 @@ public class RegisterActivity extends AppCompatActivity {
                         // Xử lý dữ liệu nhận được từ API ở đây
                         if (userDTO.isError()) {
                             Toast.makeText(RegisterActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
+                            txtLoi.setText(userDTO.getMessage());
                         } else {
                             Toast.makeText(RegisterActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
                             Log.d("User", userDTO.getUser().toString());
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
                         }
                     } else {
                         // Xử lý khi API trả về null
@@ -123,6 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
+                progressDialog.dismiss();
                 // Xử lý khi có lỗi xảy ra trong quá trình gọi API
                 Log.e("API Error", "Failed: " + t.getMessage());
             }

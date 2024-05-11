@@ -17,6 +17,6 @@ public interface ProductAPIService {
 
     @GET("products")
     Call<ProductDTO> loadproduct();
-
-
 }
+
+
