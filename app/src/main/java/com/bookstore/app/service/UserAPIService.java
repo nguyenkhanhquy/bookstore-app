@@ -1,7 +1,7 @@
 package com.bookstore.app.service;
 
 import com.bookstore.app.model.User;
-import com.bookstore.app.model.UserDTO;
+import com.bookstore.app.model.UserResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -17,14 +17,14 @@ public interface UserAPIService {
 
     @FormUrlEncoded
     @POST("users/login")
-    Call<UserDTO> login(@Field("userName") String userName,
-                        @Field("password") String password);
+    Call<UserResponse> login(@Field("userName") String userName,
+                             @Field("password") String password);
 
     @POST("users/register")
-    Call<UserDTO> register(@Body User user);
+    Call<UserResponse> register(@Body User user);
 
     @Multipart
     @POST("users/updateimages")
-    Call<UserDTO> upload(@Part("id") RequestBody id,
-                         @Part MultipartBody.Part avatar);
+    Call<UserResponse> upload(@Part("id") RequestBody id,
+                              @Part MultipartBody.Part avatar);
 }

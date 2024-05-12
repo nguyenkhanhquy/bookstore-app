@@ -30,7 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.bookstore.app.R;
 import com.bookstore.app.model.User;
-import com.bookstore.app.model.UserDTO;
+import com.bookstore.app.model.UserResponse;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.util.RealPathUtil;
@@ -51,7 +51,7 @@ import retrofit2.Response;
 public class UploadActivity extends AppCompatActivity {
 
     UserAPIService userAPIService;
-    UserDTO userDTO;
+    UserResponse userResponse;
     Button btnChoose, btnUpload;
     ImageView imageViewChoose, imageViewUpload;
     EditText editTextId;
@@ -124,26 +124,26 @@ public class UploadActivity extends AppCompatActivity {
                 MultipartBody.Part.createFormData("images", file.getName(), requestFile);
 
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
-        userAPIService.upload(requestUserName, partbodyavatar).enqueue(new Callback<UserDTO>() {
+        userAPIService.upload(requestUserName, partbodyavatar).enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful()) {
-                    userDTO = response.body();
-                    if (userDTO != null) {
+                    userResponse = response.body();
+                    if (userResponse != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
-                        if(userDTO.isError()) {
-                            Toast.makeText(UploadActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(userResponse.isError()) {
+                            Toast.makeText(UploadActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
-                            textViewId.setText(String.valueOf(userDTO.getUser().getImages()));
+                            textViewId.setText(String.valueOf(userResponse.getUser().getImages()));
                             Glide.with(UploadActivity.this)
-                                    .load(userDTO.getUser().getImages())
+                                    .load(userResponse.getUser().getImages())
                                     .signature(new ObjectKey(System.currentTimeMillis()))
                                     .into(imageViewUpload);
 
-                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(userDTO.getUser());
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
 
-                            Toast.makeText(UploadActivity.this, userDTO.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(UploadActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     } else {
                         // Xử lý khi API trả về null
@@ -157,7 +157,7 @@ public class UploadActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserDTO> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Log.e("TAG", t.toString());
                 Toast.makeText(UploadActivity.this, "Gọi APT thất bại", Toast.LENGTH_LONG).show();

@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
 import com.bookstore.app.model.User;
-import com.bookstore.app.model.UserDTO;
+import com.bookstore.app.model.UserResponse;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.service.UserAPIService;
 
@@ -28,7 +28,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     private UserAPIService userAPIService;
-    private UserDTO userDTO;
+    private UserResponse userResponse;
     private TextView txtDangNhap, txtLoi;
     private EditText edtUserName, edtHoVaTen, edtEmail, edtSDT, edtDiaChi, edtMK, edtXNMK;
     private RadioButton radNam, radNu;
@@ -130,20 +130,20 @@ public class RegisterActivity extends AppCompatActivity {
     private void register(User user) {
         progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
-        userAPIService.register(user).enqueue(new Callback<UserDTO>() {
+        userAPIService.register(user).enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful()) {
-                    userDTO = response.body();
-                    if (userDTO != null) {
+                    userResponse = response.body();
+                    if (userResponse != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
-                        if (userDTO.isError()) {
-                            Toast.makeText(RegisterActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
-                            txtLoi.setText(userDTO.getMessage());
+                        if (userResponse.isError()) {
+                            Toast.makeText(RegisterActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            txtLoi.setText(userResponse.getMessage());
                         } else {
-                            Toast.makeText(RegisterActivity.this, userDTO.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.d("User", userDTO.getUser().toString());
+                            Toast.makeText(RegisterActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("User", userResponse.getUser().toString());
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }
@@ -159,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserDTO> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 // Xử lý khi có lỗi xảy ra trong quá trình gọi API
                 Log.e("API Error", "Failed: " + t.getMessage());

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.UserDTO;
+import com.bookstore.app.model.UserResponse;
 import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.util.SharedPrefManager;
@@ -28,7 +28,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     UserAPIService userAPIService;
-    UserDTO userDTO;
+    UserResponse userResponse;
     private TextView txtDangKy, txtLoi;
     private EditText edtUserName, edtMatKhau;
     private Button btnDangNhap;
@@ -101,19 +101,20 @@ public class LoginActivity extends AppCompatActivity {
     private void login(String userName, String password) {
         progressDialog.show();
         userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
-        userAPIService.login(userName, password).enqueue(new Callback<UserDTO>() {
+        userAPIService.login(userName, password).enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful()) {
-                    userDTO = response.body();
-                    if (userDTO != null) {
+                    userResponse = response.body();
+                    if (userResponse != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
-                        if(userDTO.isError()) {
+                        if(userResponse.isError()) {
                             txtLoi.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
                         } else {
-                            Log.d("User", userDTO.getUser().toString());
-                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(userDTO.getUser());
+                            Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("User", userResponse.getUser().toString());
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
                             Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                             startActivity(intent);
                             finish();
@@ -130,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserDTO> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 // Xử lý khi có lỗi xảy ra trong quá trình gọi API
                 Log.e("API Error", "Failed: " + t.getMessage());

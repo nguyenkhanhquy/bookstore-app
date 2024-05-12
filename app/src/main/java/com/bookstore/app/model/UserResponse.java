@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserDTO {
+public class UserResponse {
 
     @SerializedName("error")
     private boolean error;
