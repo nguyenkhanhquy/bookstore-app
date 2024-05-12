@@ -23,6 +23,7 @@ import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
+    ProductAPIService productAPIService;
     private RecyclerView rvProduct;
     private ProductAdapter productAdapter;
     private List<Product> productList;
@@ -41,14 +42,16 @@ public class HomeActivity extends AppCompatActivity {
 
 
         // Call the API to load products
-        callApiProduct();
+        loadAllProduct();
     }
 
-    private void callApiProduct() {
-        ProductAPIService.productApiService.loadAllProduct().enqueue(new Callback<List<Product>>() {
+    private void loadAllProduct() {
+
+        productAPIService = RetrofitClient.getRetrofit().create(ProductAPIService.class);
+        productAPIService.loadAllProduct().enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                Toast.makeText(HomeActivity.this,"Lỗi rồi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this,"loadAllProduct", Toast.LENGTH_SHORT).show();
                 productList = response.body();
                 productAdapter = new ProductAdapter(HomeActivity.this,productList);
                 rvProduct.setAdapter(productAdapter);
