@@ -18,13 +18,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="28dp"
-            app:cardCornerRadius="50dp">
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="60dp">
 
             <ImageView
                 android:id="@+id/imgAvatar"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:background="@color/xanh_chu_de"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_account_circle" />
@@ -69,7 +69,7 @@
             android:drawableStart="@drawable/ic_manage_accounts"
             android:drawablePadding="10dp"
             android:text="Thông tin cá nhân"
-            android:textSize="18sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/txtDoiMK"
@@ -79,7 +79,7 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="10dp"
             android:text="Đổi mật khẩu"
-            android:textSize="18sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/txtLogout"
@@ -89,7 +89,7 @@
             android:drawablePadding="10dp"
             android:text="Đăng xuất"
             android:textColor="#EF3737"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
     </LinearLayout>
 

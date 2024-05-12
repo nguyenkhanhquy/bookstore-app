@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         txtLoi.setText("");
     }
 
-    public void initListener() {
+    private void initListener() {
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

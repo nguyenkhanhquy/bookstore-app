@@ -32,7 +32,7 @@
         android:layout_marginTop="16dp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:text="Mỗi Cuốn Sách - Một Hành Trình Mới \n BookStore đồng hành cùng bạn trên mỗi trang sách"
+        android:text="Mỗi Cuốn Sách - Một Hành Trình Mới \n BookStore đồng hành cùng bạn trên từng trang sách"
         android:textSize="18sp"
         android:textStyle="italic" />
 
