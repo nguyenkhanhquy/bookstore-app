@@ -17,13 +17,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.UpdateImagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UpdateInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DetailAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".fragment.HomeFragment"
-            android:exported="false" />
-        <activity
-            android:name=".activity.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.UploadActivity"
             android:exported="false" />
         <activity
             android:name=".activity.IntroActivity"
@@ -35,13 +41,10 @@
             android:name=".activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ProfileActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

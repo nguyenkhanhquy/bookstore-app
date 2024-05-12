@@ -29,12 +29,12 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 nextActivity();
             }
-        }, 2000);
+        }, 1500);
     }
 
     public void nextActivity() {
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Intent intent = new Intent(this, ProfileActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         } else {

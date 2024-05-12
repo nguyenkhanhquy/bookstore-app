@@ -15,9 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -26,7 +24,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.bookstore.app.R;
 import com.bookstore.app.model.User;
@@ -48,18 +45,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UploadActivity extends AppCompatActivity {
+public class UpdateImagesActivity extends AppCompatActivity {
 
-    UserAPIService userAPIService;
-    UserResponse userResponse;
-    Button btnChoose, btnUpload;
-    ImageView imageViewChoose, imageViewUpload;
-    EditText editTextId;
-    TextView textViewId;
-    private Uri mUri;
-    private ProgressDialog progressDialog;
+    private UserAPIService userAPIService;
+    private UserResponse userResponse;
     public static final int MY_REQUEST_CODE = 100;
-    public static final String TAG = UploadActivity.class.getName();
+    private ImageView imgChoose;
+    private Button btnChoose, btnUpdate, btnBack;
+    private ProgressDialog progressDialog;
+    private Uri mUri;
 
     private User user;
 
@@ -68,25 +62,26 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_upload);
+        setContentView(R.layout.activity_update_images);
 
-        // Thiết lập Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        // Đặt tiêu đề cho Toolbar
-        getSupportActionBar().setTitle("Back");
-        // Hiển thị nút "Back"
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        AnhXa();
-
-        user = SharedPrefManager.getInstance(this).getUser();
-        editTextId.setText(String.valueOf(user.getId()));
+        anhXa();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Đang xử lý...");
 
+        user = SharedPrefManager.getInstance(this).getUser();
+
+        initListener();
+    }
+
+    private void anhXa() {
+        imgChoose = findViewById(R.id.imgChoose);
+        btnChoose = findViewById(R.id.btnChoose);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnBack = findViewById(R.id.btnBack);
+    }
+
+    private void initListener() {
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,14 +89,26 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
 
-        btnUpload.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mUri != null) {
                     uploadImage();
+                    Intent intent = new Intent(UpdateImagesActivity.this, DetailAccountActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(UploadActivity.this, "mUri null", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateImagesActivity.this, "mUri null", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UpdateImagesActivity.this, DetailAccountActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -109,7 +116,7 @@ public class UploadActivity extends AppCompatActivity {
     public void uploadImage() {
         progressDialog.show();
 
-        String id = editTextId.getText().toString().trim();
+        String id = String.valueOf(user.getId());
         RequestBody requestUserName =
                 RequestBody.create(MediaType.parse("multipart/form-data"), id);
 
@@ -133,21 +140,14 @@ public class UploadActivity extends AppCompatActivity {
                     if (userResponse != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
                         if(userResponse.isError()) {
-                            Toast.makeText(UploadActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateImagesActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
-                            textViewId.setText(String.valueOf(userResponse.getUser().getImages()));
-                            Glide.with(UploadActivity.this)
-                                    .load(userResponse.getUser().getImages())
-                                    .signature(new ObjectKey(System.currentTimeMillis()))
-                                    .into(imageViewUpload);
-
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
-
-                            Toast.makeText(UploadActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(UpdateImagesActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     } else {
                         // Xử lý khi API trả về null
-                        Toast.makeText(UploadActivity.this, "Failed to get response from server", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateImagesActivity.this, "Failed to get response from server", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Xử lý khi gọi API không thành công
@@ -160,53 +160,32 @@ public class UploadActivity extends AppCompatActivity {
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Log.e("TAG", t.toString());
-                Toast.makeText(UploadActivity.this, "Gọi APT thất bại", Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateImagesActivity.this, "Gọi APT thất bại", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        // Xử lý khi nút "Back" được nhấn
-        onBackPressed();
-
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-        finish(); // Kết thúc hoạt động hiện tại
-        return true;
-    }
-
-    private void AnhXa() {
-        btnChoose = findViewById(R.id.btnChoose);
-        btnUpload = findViewById(R.id.btnUpload);
-        imageViewUpload = findViewById(R.id.imgMultipart);
-        editTextId = findViewById(R.id.editId);
-        textViewId = findViewById(R.id.tvId);
-        imageViewChoose = findViewById(R.id.imgChoose);
-    }
-
     private final ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
-        new ActivityResultContracts.StartActivityForResult(),
-        new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                Log.e(TAG, "onActivityResult");
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
-                    if (data == null) {
-                        return;
-                    }
-                    Uri uri = data.getData();
-                    mUri = uri;
-                    try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imageViewChoose.setImageBitmap(bitmap);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data == null) {
+                            return;
+                        }
+                        Uri uri = data.getData();
+                        mUri = uri;
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                            imgChoose.setImageBitmap(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-        }
     );
 
     private void openGallery() {

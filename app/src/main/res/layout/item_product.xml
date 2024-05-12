@@ -8,6 +8,7 @@
     android:layout_height="225dp"
     android:layout_marginStart="14dp"
     android:paddingBottom="10dp"
+    android:layout_marginTop="10dp"
     android:background="?attr/colorSecondaryFixed">
 
     <com.google.android.material.imageview.ShapeableImageView

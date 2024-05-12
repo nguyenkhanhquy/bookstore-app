@@ -10,11 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
+import com.bookstore.app.activity.LoginActivity;
+import com.bookstore.app.activity.MainActivity;
+import com.bookstore.app.fragment.HomeFragment;
 import com.bookstore.app.model.Product;
 
 import java.io.InputStream;
@@ -45,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
         Product product = mProducts.get(position);
         if (product == null) {
-            Log.e("ProductAdapter", "Product is null at position: " + position);
+            Log.e("Erorr", "Product is null at position: " + position);
             return;
         }
 
@@ -72,6 +76,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             imageProduct = itemView.findViewById(R.id.imageProduct);
             nameProduct = itemView.findViewById(R.id.nameProduct);
             priceProduct = itemView.findViewById(R.id.priceProduct);
+
+            //  Bắt sự kiện cho item holder trong MyViewHolder
+            itemView.setOnClickListener(v -> {
+                // Xử lý khi nhấp vào Item trên User
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Product product = mProducts.get(position);
+                    Toast.makeText(mContext, "Bạn đã chọn product có id: " + product.getId(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
