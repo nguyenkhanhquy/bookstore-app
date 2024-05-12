@@ -1,58 +1,67 @@
 package com.bookstore.app.activity;
 
-import android.net.wifi.hotspot2.pps.HomeSp;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bookstore.app.R;
+import com.bookstore.app.adapter.ViewPagerAdapter;
+import com.bookstore.app.transformer.ZoomOutPageTransformer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import lombok.NonNull;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
+    private ViewPager2 mViewPager2;
+    private BottomNavigationView mBottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        mViewPager2 = findViewById(R.id.view_pager_2);
+        mBottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Bắt sự kiện khi một mục trong menu được chọn
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(this);
+        mViewPager2.setAdapter(mViewPagerAdapter);
+
+        mBottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-
-                // Xử lý các menu item tại đây
-                if (id == R.id.home_page) {
-
-                    Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                    return true;
+                if (id==R.id.bottom_home) {
+                    mViewPager2.setCurrentItem(0);
+                } else if (id==R.id.bottom_order) {
+                    mViewPager2.setCurrentItem(1);
+                } else if (id==R.id.bottom_account) {
+                    mViewPager2.setCurrentItem(2);
                 }
-                else if (id==R.id.order_page){
-
-                    Toast.makeText(getApplicationContext(),"Order",Toast.LENGTH_SHORT).show();
-                    return true;
-
-                }
-                else if(id==R.id.profile_page) {
-                    Toast.makeText(getApplicationContext(),"User",Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
+                return true;
             }
         });
 
+        mViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                switch (position) {
+                    case 0:
+                        mBottomNavigationView.getMenu().findItem(R.id.bottom_home).setChecked(true);
+                        break;
+                    case 1:
+                        mBottomNavigationView.getMenu().findItem(R.id.bottom_order).setChecked(true);
+                        break;
+                    case 2:
+                        mBottomNavigationView.getMenu().findItem(R.id.bottom_account).setChecked(true);
+                        break;
+                }
+            }
+        });
 
+        mViewPager2.setPageTransformer(new ZoomOutPageTransformer());
     }
-
-
 }
