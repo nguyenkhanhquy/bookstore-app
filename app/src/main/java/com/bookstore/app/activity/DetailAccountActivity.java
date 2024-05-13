@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.adapter.ViewPagerAdapter;
 import com.bookstore.app.model.User;
 import com.bookstore.app.util.SharedPrefManager;
 import com.bumptech.glide.Glide;
@@ -21,8 +20,6 @@ public class DetailAccountActivity extends AppCompatActivity {
 
     private TextView txtDiaChi, txtHoVaTen, txtGender, txtEmail, txtPhone, btnUpdate;
     private ImageView imgBack, imgAvatar;
-
-    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,4 +27,10 @@ public interface UserAPIService {
     @POST("users/updateimages")
     Call<UserResponse> upload(@Part("id") RequestBody id,
                               @Part MultipartBody.Part avatar);
+
+    @FormUrlEncoded
+    @POST("users/updatepassword")
+    Call<UserResponse> updatePassword(@Field("id") int id,
+                                      @Field("password") String password,
+                                      @Field("newPassword") String newPassword);
 }

@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="184dp"
         android:background="@color/white"
         android:orientation="vertical">
 
@@ -32,11 +32,11 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/txtTen"
+            android:id="@+id/txtHoVaTen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text=""
+            android:text="Họ và tên"
             android:textColor="@color/xanh_nhat_background"
             android:textSize="24sp"
             android:textStyle="bold"

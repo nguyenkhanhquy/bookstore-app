@@ -26,7 +26,7 @@ import com.bumptech.glide.signature.ObjectKey;
 public class AccountFragment extends Fragment {
 
     private View mView;
-    private TextView txtLogout, txtTen, txtThongTin, txtDoiMK;
+    private TextView txtLogout, txtHoVaTen, txtThongTin, txtDoiMK;
     private ImageView imgAvatar;
 
     @Nullable
@@ -34,27 +34,40 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_account, container, false);
 
-        if (SharedPrefManager.getInstance(getActivity()).isLoggedIn()) {
-            anhXa();
+        anhXa();
 
+        loadUserData();
+
+        initLinsenter();
+
+        return mView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Load lại dữ liệu tại đây
+        loadUserData();
+    }
+
+    private void loadUserData() {
+        if (SharedPrefManager.getInstance(getActivity()).isLoggedIn()) {
             User user = SharedPrefManager.getInstance(getActivity()).getUser();
+            txtHoVaTen.setText(user.getFullName());
             Glide.with(this)
                     .load(user.getImages())
                     .signature(new ObjectKey(System.currentTimeMillis()))
                     .into(imgAvatar);
-
-            initLinsenter();
         } else {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
             getActivity().finish();
         }
-        return mView;
     }
 
     private void anhXa() {
         txtLogout = mView.findViewById(R.id.txtLogout);
-        txtTen = mView.findViewById(R.id.txtTen);
+        txtHoVaTen = mView.findViewById(R.id.txtHoVaTen);
         txtThongTin = mView.findViewById(R.id.txtThongTin);
         txtDoiMK = mView.findViewById(R.id.txtDoiMK);
         imgAvatar = mView.findViewById(R.id.imgAvatar);
