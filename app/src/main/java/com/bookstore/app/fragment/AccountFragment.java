@@ -1,5 +1,6 @@
 package com.bookstore.app.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ import com.bumptech.glide.signature.ObjectKey;
 
 public class AccountFragment extends Fragment {
 
+    private static final int DETAIL_ACCOUNT_REQUEST_CODE = 1;
     private View mView;
     private TextView txtLogout, txtHoVaTen, txtThongTin, txtDoiMK;
     private ImageView imgAvatar;
@@ -41,13 +43,6 @@ public class AccountFragment extends Fragment {
         initLinsenter();
 
         return mView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Load lại dữ liệu tại đây
-        loadUserData();
     }
 
     private void loadUserData() {
@@ -79,7 +74,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DetailAccountActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, DETAIL_ACCOUNT_REQUEST_CODE);
             }
         });
 
@@ -100,5 +95,13 @@ public class AccountFragment extends Fragment {
                 getActivity().finish();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DETAIL_ACCOUNT_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            loadUserData();
+        }
     }
 }

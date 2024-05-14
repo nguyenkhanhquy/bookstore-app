@@ -45,6 +45,13 @@ public class ProductFragment extends Fragment {
         return mView;
     }
 
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        // Load lại dữ liệu tại đây
+//        loadAllProduct();
+//    }
+
     private void anhXa() {
         rcProduct = mView.findViewById(R.id.rc_product);
     }

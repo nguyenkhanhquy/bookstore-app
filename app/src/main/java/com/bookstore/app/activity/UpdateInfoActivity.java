@@ -59,8 +59,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpdateInfoActivity.this, DetailAccountActivity.class);
-                startActivity(intent);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
