@@ -16,9 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.activity.LoginActivity;
-import com.bookstore.app.activity.MainActivity;
-import com.bookstore.app.fragment.HomeFragment;
 import com.bookstore.app.model.Product;
 
 import java.io.InputStream;

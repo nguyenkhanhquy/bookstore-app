@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
+import com.bookstore.app.model.User;
 import com.bookstore.app.util.SharedPrefManager;
 
 @SuppressLint("CustomSplashScreen")
@@ -34,8 +35,14 @@ public class SplashActivity extends AppCompatActivity {
 
     public void nextActivity() {
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            User user = SharedPrefManager.getInstance(this).getUser();
+            if (user.getRole().getId() == 1) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, MainAdminActivity.class);
+                startActivity(intent);
+            }
             finish();
         } else {
             Intent intent = new Intent(this, IntroActivity.class);

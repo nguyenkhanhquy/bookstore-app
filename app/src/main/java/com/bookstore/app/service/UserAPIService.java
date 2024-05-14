@@ -24,12 +24,12 @@ public interface UserAPIService {
     Call<UserResponse> register(@Body User user);
 
     @Multipart
-    @POST("users/updateimages")
+    @POST("users/update-images")
     Call<UserResponse> upload(@Part("id") RequestBody id,
                               @Part MultipartBody.Part avatar);
 
     @FormUrlEncoded
-    @POST("users/updatepassword")
+    @POST("users/update-password")
     Call<UserResponse> updatePassword(@Field("id") int id,
                                       @Field("password") String password,
                                       @Field("newPassword") String newPassword);
