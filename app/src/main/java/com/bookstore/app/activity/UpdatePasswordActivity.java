@@ -1,7 +1,6 @@
 package com.bookstore.app.activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
 import com.bookstore.app.model.User;
-import com.bookstore.app.model.UserResponse;
+import com.bookstore.app.response.UserResponse;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.util.SharedPrefManager;

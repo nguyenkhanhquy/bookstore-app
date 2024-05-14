@@ -1,4 +1,4 @@
-package com.bookstore.app.activity;
+package com.bookstore.app.activity.admin;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bookstore.app.R;
-import com.bookstore.app.adapter.ViewPagerAdminAdapter;
+import com.bookstore.app.adapter.admin.ViewPagerAdminAdapter;
 import com.bookstore.app.transformer.ZoomOutPageTransformer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -39,10 +39,8 @@ public class MainAdminActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 if (id==R.id.bottom_manager_product) {
                     mViewPager2.setCurrentItem(0);
-                } else if (id==R.id.bottom_manager_order) {
-                    mViewPager2.setCurrentItem(1);
                 } else if (id==R.id.bottom_account_admin) {
-                    mViewPager2.setCurrentItem(2);
+                    mViewPager2.setCurrentItem(1);
                 }
                 return true;
             }
@@ -57,9 +55,6 @@ public class MainAdminActivity extends AppCompatActivity {
                         mBottomNavigationView.getMenu().findItem(R.id.bottom_manager_product).setChecked(true);
                         break;
                     case 1:
-                        mBottomNavigationView.getMenu().findItem(R.id.bottom_manager_order).setChecked(true);
-                        break;
-                    case 2:
                         mBottomNavigationView.getMenu().findItem(R.id.bottom_account_admin).setChecked(true);
                         break;
                 }

@@ -1,7 +1,7 @@
 package com.bookstore.app.service;
 
 import com.bookstore.app.model.User;
-import com.bookstore.app.model.UserResponse;
+import com.bookstore.app.response.UserResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -33,4 +33,7 @@ public interface UserAPIService {
     Call<UserResponse> updatePassword(@Field("id") int id,
                                       @Field("password") String password,
                                       @Field("newPassword") String newPassword);
+
+    @POST("users/update-info")
+    Call<UserResponse> updateInfo(@Body User user);
 }

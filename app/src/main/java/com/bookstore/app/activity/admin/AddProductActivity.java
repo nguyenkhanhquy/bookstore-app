@@ -1,4 +1,4 @@
-package com.bookstore.app.activity;
+package com.bookstore.app.activity.admin;
 
 import android.Manifest;
 import android.app.Activity;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,8 +27,10 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.User;
-import com.bookstore.app.response.UserResponse;
+import com.bookstore.app.activity.UpdateImagesActivity;
+import com.bookstore.app.response.ProductResponse;
+import com.bookstore.app.response.ProductResponse;
+import com.bookstore.app.service.ProductAPIService;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.util.RealPathUtil;
@@ -43,104 +46,111 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UpdateImagesActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity {
 
-    private UserAPIService userAPIService;
-    private UserResponse userResponse;
-    public static final int MY_REQUEST_CODE = 100;
-    private ImageView imgChoose;
-    private Button btnChoose, btnUpdate, btnBack;
-    private ProgressDialog progressDialog;
+    private ProductAPIService productAPIService;
+    private ProductResponse productResponse;
+    public static final int MY_REQUEST_CODE = 101;
     private Uri mUri;
-    private User user;
+    ImageView imgChoose;
+    EditText edtName, edtPrice, edtDesc;
+    Button btnAdd, btnCancel;
+    String name, desc;
+    double price;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_update_images);
+        setContentView(R.layout.activity_add_product);
 
         anhXa();
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Đang xử lý...");
 
-        user = SharedPrefManager.getInstance(this).getUser();
-
-        initListener();
+        initLinsenter();
     }
 
     private void anhXa() {
+        btnCancel = findViewById(R.id.btnCancel);
+        btnAdd = findViewById(R.id.btnAdd);
         imgChoose = findViewById(R.id.imgChoose);
-        btnChoose = findViewById(R.id.btnChoose);
-        btnUpdate = findViewById(R.id.btnUpdate);
-        btnBack = findViewById(R.id.btnBack);
+        edtName = findViewById(R.id.edtName);
+        edtPrice = findViewById(R.id.edtPrice);
+        edtDesc = findViewById(R.id.edtDesc);
     }
 
-    private void initListener() {
-        btnChoose.setOnClickListener(new View.OnClickListener() {
+    private void initLinsenter() {
+        imgChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CheckPermission();
             }
         });
 
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mUri != null) {
-                    uploadImage();
-                } else {
-                    Toast.makeText(UpdateImagesActivity.this, "mUri null", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_CANCELED);
                 finish();
             }
         });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkInfo()) {
+                    name = edtName.getText().toString().trim();
+                    desc = edtDesc.getText().toString().trim();
+                    price = Double.parseDouble(edtPrice.getText().toString().trim());
+                    addProduct(name, desc, price);
+                }
+            }
+        });
     }
 
-    public void uploadImage() {
+    public void addProduct(String name, String description, double price) {
         progressDialog.show();
 
-        String id = String.valueOf(user.getId());
-        RequestBody requestUserName =
-                RequestBody.create(MediaType.parse("multipart/form-data"), id);
+        RequestBody requestName =
+                RequestBody.create(MediaType.parse("multipart/form-data"), name);
+
+        RequestBody requestDescription =
+                RequestBody.create(MediaType.parse("multipart/form-data"), description);
+
+        RequestBody requestPrice =
+                RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(price));
 
         String IMAGE_PATH = RealPathUtil.getRealPath(this, mUri);
         File file = new File(IMAGE_PATH);
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
-        MultipartBody.Part partbodyavatar =
+        MultipartBody.Part partbodyimages =
                 MultipartBody.Part.createFormData("images", file.getName(), requestFile);
 
-        userAPIService = RetrofitClient.getRetrofit().create(UserAPIService.class);
-        userAPIService.upload(requestUserName, partbodyavatar).enqueue(new Callback<UserResponse>() {
+        productAPIService = RetrofitClient.getRetrofit().create(ProductAPIService.class);
+        productAPIService.addProduct(requestName, requestDescription, requestPrice, partbodyimages).enqueue(new Callback<ProductResponse>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful()) {
-                    userResponse = response.body();
-                    if (userResponse != null) {
+                    productResponse = response.body();
+                    if (productResponse != null) {
                         // Xử lý dữ liệu nhận được từ API ở đây
-                        if(userResponse.isError()) {
-                            Toast.makeText(UpdateImagesActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(productResponse.isError()) {
+                            Toast.makeText(AddProductActivity.this, productResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
-                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
-                            Toast.makeText(UpdateImagesActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddProductActivity.this, productResponse.getMessage(), Toast.LENGTH_LONG).show();
                             setResult(RESULT_OK);
                             finish();
                         }
                     } else {
                         // Xử lý khi API trả về null
-                        Toast.makeText(UpdateImagesActivity.this, "Failed to get response from server", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddProductActivity.this, "Failed to get response from server", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Xử lý khi gọi API không thành công
@@ -150,12 +160,23 @@ public class UpdateImagesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<ProductResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Log.e("TAG", t.toString());
-                Toast.makeText(UpdateImagesActivity.this, "Gọi APT thất bại", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddProductActivity.this, "Gọi APT thất bại", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private boolean checkInfo() {
+        if ((edtName.getText().toString()).isEmpty() || (edtDesc.getText().toString()).isEmpty() || (edtPrice.getText().toString()).isEmpty()) {
+            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (mUri == null) {
+            Toast.makeText(this, "Vui lòng chọn hình ảnh", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private final ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,7 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookStoreApp"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".activity.admin.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.admin.ManagerProductActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.CartActivity"
             android:exported="false" />
@@ -47,13 +53,14 @@
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainAdminActivity"
+            android:name=".activity.admin.MainAdminActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SplashActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

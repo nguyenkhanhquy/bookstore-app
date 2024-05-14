@@ -17,9 +17,9 @@
         android:layout_width="0dp"
         android:layout_height="0.5dp"
         android:background="@color/GreyV2"
-        app:layout_constraintStart_toStartOf="@+id/priceFood"
-        app:layout_constraintEnd_toEndOf="@+id/favoriteFood"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageProduct"
@@ -100,7 +100,6 @@
 
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/priceProduct"
         android:layout_width="wrap_content"
@@ -112,15 +111,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageProduct"
         app:layout_constraintStart_toStartOf="@+id/linearLayout4"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
-
-    <ImageButton
-        android:id="@+id/favoriteFood"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="11dp"
-        android:background="@drawable/fav_btn"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/priceFood"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/priceFood" />
 </androidx.constraintlayout.widget.ConstraintLayout>

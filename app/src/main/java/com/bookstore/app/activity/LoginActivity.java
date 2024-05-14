@@ -16,7 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.UserResponse;
+import com.bookstore.app.activity.admin.MainAdminActivity;
+import com.bookstore.app.response.UserResponse;
 import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.util.SharedPrefManager;

@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
 import com.bookstore.app.model.User;
-import com.bookstore.app.model.UserResponse;
+import com.bookstore.app.response.UserResponse;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.service.UserAPIService;
 
@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
         address = edtDiaChi.getText().toString().trim();
 
         if (userName.isEmpty() || fullName.isEmpty() || email.isEmpty() ||
-                phone.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+                phone.isEmpty() || password.isEmpty() || confirmPass.isEmpty() || address.isEmpty()) {
             txtLoi.setText("Vui lòng điền đầy đủ thông tin");
             return false;
         } else if (!radNam.isChecked() && !radNu.isChecked()) {
@@ -144,7 +144,6 @@ public class RegisterActivity extends AppCompatActivity {
                             txtLoi.setText(userResponse.getMessage());
                         } else {
                             Toast.makeText(RegisterActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.d("User", userResponse.getUser().toString());
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }

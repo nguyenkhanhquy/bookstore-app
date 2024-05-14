@@ -2,13 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_manager_product"
-        android:title="QL Sản phẩm"
+        android:title="Quản lý"
         android:icon="@drawable/settings"/>
-
-    <item
-        android:id="@+id/bottom_manager_order"
-        android:title="QL Đơn hàng"
-        android:icon="@drawable/order"/>
 
     <item
         android:id="@+id/bottom_account_admin"

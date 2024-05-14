@@ -1,15 +1,20 @@
-package com.bookstore.app.model;
+package com.bookstore.app.response;
 
+import com.bookstore.app.model.Product;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
-public class UserResponse {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductResponse {
 
     @SerializedName("error")
     private boolean error;
@@ -18,5 +23,5 @@ public class UserResponse {
     private String message;
 
     @SerializedName("user")
-    private User user;
+    private Product product;
 }
