@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
 import com.bookstore.app.model.Product;
+import com.bumptech.glide.Glide;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -50,9 +51,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             return;
         }
 
+        // Load ảnh với Glide
+        Glide.with(mContext)
+                .load(product.getImages())
+                .into(holder.imageProduct);
+
         // Load image from URL using AsyncTask
-        String imageUrl = product.getImages();
-        new LoadImageTask(holder.imageProduct).execute(imageUrl);
+//        String imageUrl = product.getImages();
+//        new LoadImageTask(holder.imageProduct).execute(imageUrl);
 
         holder.nameProduct.setText(product.getName());
         holder.priceProduct.setText(String.valueOf(product.getPrice()));

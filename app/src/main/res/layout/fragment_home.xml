@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:queryHint="Find your menu"
+            app:queryHint="Tìm sách bạn muốn..."
             android:background="@drawable/bg_button_without_stroke"
             android:elevation="7dp"
             android:layout_marginHorizontal="20dp"/>

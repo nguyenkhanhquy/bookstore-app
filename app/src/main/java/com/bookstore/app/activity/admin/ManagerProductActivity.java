@@ -27,6 +27,7 @@ import retrofit2.Response;
 
 public class ManagerProductActivity extends AppCompatActivity {
     private static final int ADD_PRODUCT_REQUEST_CODE = 1;
+    private static final int UPDATE_PRODUCT_REQUEST_CODE = 2;
     RecyclerView rcProduct;
     ProductAdapter productAdapter;
     ProductAPIService productAPIService;
@@ -103,7 +104,7 @@ public class ManagerProductActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == ADD_PRODUCT_REQUEST_CODE) && resultCode == RESULT_OK) {
+        if ((requestCode == ADD_PRODUCT_REQUEST_CODE || requestCode == UPDATE_PRODUCT_REQUEST_CODE) && resultCode == RESULT_OK) {
             loadAllProduct();
         }
     }

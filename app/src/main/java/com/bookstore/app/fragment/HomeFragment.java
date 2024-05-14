@@ -11,13 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.bookstore.app.R;
 import com.bookstore.app.activity.CartActivity;
-import com.bookstore.app.activity.LoginActivity;
-import com.bookstore.app.activity.RegisterActivity;
 import com.bookstore.app.adapter.ProductAdapter;
 import com.bookstore.app.model.Product;
 import com.bookstore.app.service.ProductAPIService;
@@ -87,21 +84,18 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newQuery) {
                 // Xử lý khi người dùng thay đổi truy vấn tìm kiếm
-                productAdapter = new ProductAdapter(getActivity(),productList);
-                rvProduct.setAdapter(productAdapter);
+                searchProduct(newQuery);
                 return false;
             }
         };
 
         searchView.setOnQueryTextListener(listener);
-
     }
     private void searchProduct(String query) {
         List<Product> searchProductList = new ArrayList<>();
-        for ( Product i: productList )
-        {
-            if(i.getName().contains(query))
-            {
+        String lowerCaseQuery = query.toLowerCase();  // Chuyển truy vấn về chữ thường
+        for ( Product i: productList ) {
+            if (i.getName().toLowerCase().contains(lowerCaseQuery)) {  // Chuyển tên sản phẩm về chữ thường trước khi so sánh
                 searchProductList.add(i);
             }
         }

@@ -1,6 +1,9 @@
 package com.bookstore.app.adapter.admin;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
+import com.bookstore.app.activity.admin.UpdateProductActivity;
 import com.bookstore.app.model.Product;
 import com.bumptech.glide.Glide;
 
@@ -19,6 +23,7 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
+    private static final int UPDATE_PRODUCT_REQUEST_CODE = 2;
     private final Context context;
     private final List<Product> productList;
 
@@ -33,6 +38,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.manager_product_item, parent, false);
         return new MyViewHolder(view);
+    }
+
+    public static Activity getActivityFromContext(Context context) {
+        if (context == null) {
+            return null;
+        } else if (context instanceof Activity) {
+            return (Activity) context;
+        } else if (context instanceof ContextWrapper) {
+            return getActivityFromContext(((ContextWrapper) context).getBaseContext());
+        }
+        return null;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -52,7 +68,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     Product product = productList.get(position);
-                    Toast.makeText(context, "Bạn đã chọn sản phẩm có id: " + product.getId(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, UpdateProductActivity.class);
+                    intent.putExtra("object", product);
+                    Activity activity = getActivityFromContext(context);
+                    if (activity != null) {
+                        activity.startActivityForResult(intent, UPDATE_PRODUCT_REQUEST_CODE);
+                    } else {
+                        Toast.makeText(context, "Unable to get activity from context", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
