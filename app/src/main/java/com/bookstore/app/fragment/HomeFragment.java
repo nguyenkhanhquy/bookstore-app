@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.bookstore.app.R;
@@ -38,6 +39,8 @@ public class HomeFragment extends Fragment {
     private List<Product> productList;
     private ImageButton cart;
 
+    private androidx.appcompat.widget.SearchView searchView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class HomeFragment extends Fragment {
 
     private void anhXa() {
         cart = mView.findViewById(R.id.cart);
+        searchView = mView.findViewById(R.id.searchView);
     }
 
     private void initListener() {
@@ -70,7 +74,42 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        // Tìm kiếm
+        androidx.appcompat.widget.SearchView.OnQueryTextListener listener = new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Xử lý khi người dùng nhấn nút "Tìm kiếm"
+                searchProduct(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newQuery) {
+                // Xử lý khi người dùng thay đổi truy vấn tìm kiếm
+                productAdapter = new ProductAdapter(getActivity(),productList);
+                rvProduct.setAdapter(productAdapter);
+                return false;
+            }
+        };
+
+        searchView.setOnQueryTextListener(listener);
+
     }
+    private void searchProduct(String query) {
+        List<Product> searchProductList = new ArrayList<>();
+        for ( Product i: productList )
+        {
+            if(i.getName().contains(query))
+            {
+                searchProductList.add(i);
+            }
+        }
+        productAdapter = new ProductAdapter(getActivity(),searchProductList);
+        rvProduct.setAdapter(productAdapter);
+    }
+
+
 
     private void loadAllProduct() {
 
