@@ -25,13 +25,13 @@
             android:textSize="28sp" />
 
         <TextView
-            android:id="@+id/txtQuanLyHoaDon"
+            android:id="@+id/txtQuanLyDonHang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="10dp"
-            android:text="Quản lý hóa đơn"
+            android:text="Quản lý đơn hàng"
             android:textSize="28sp" />
     </LinearLayout>
 

@@ -33,7 +33,7 @@ public class ManagerFragment extends Fragment {
 
     private void anhXa(){
         txtQuanLySanPham = mView.findViewById(R.id.txtQuanLySanPham);
-        txtQuanLyHoaDon = mView.findViewById(R.id.txtQuanLyHoaDon);
+        txtQuanLyHoaDon = mView.findViewById(R.id.txtQuanLyDonHang);
     }
 
     private void initLinsenter() {

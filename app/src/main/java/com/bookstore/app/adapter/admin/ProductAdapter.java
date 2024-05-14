@@ -18,6 +18,7 @@ import com.bookstore.app.R;
 import com.bookstore.app.activity.admin.UpdateProductActivity;
 import com.bookstore.app.model.Product;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
 
 import java.util.List;
 
@@ -85,11 +86,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.nameProduct.setText(product.getName());
-        holder.priceProduct.setText(String.valueOf(product.getPrice()));
+        holder.priceProduct.setText(product.getPrice() + " VNĐ");
 
         // Load ảnh với Glide
         Glide.with(context)
                 .load(product.getImages())
+                .signature(new ObjectKey(System.currentTimeMillis()))
                 .into(holder.imageProduct);
     }
 

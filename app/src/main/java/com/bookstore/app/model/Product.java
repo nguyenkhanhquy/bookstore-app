@@ -19,5 +19,5 @@ public class Product implements Serializable {
     private String name;
     private String images;
     private String description;
-    private float price;
+    private double price;
 }
