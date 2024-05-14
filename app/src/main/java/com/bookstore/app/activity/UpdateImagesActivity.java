@@ -94,9 +94,6 @@ public class UpdateImagesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mUri != null) {
                     uploadImage();
-                    Intent intent = new Intent(UpdateImagesActivity.this, DetailAccountActivity.class);
-                    startActivity(intent);
-                    finish();
                 } else {
                     Toast.makeText(UpdateImagesActivity.this, "mUri null", Toast.LENGTH_LONG).show();
                 }
@@ -106,8 +103,7 @@ public class UpdateImagesActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpdateImagesActivity.this, DetailAccountActivity.class);
-                startActivity(intent);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
@@ -120,9 +116,7 @@ public class UpdateImagesActivity extends AppCompatActivity {
         RequestBody requestUserName =
                 RequestBody.create(MediaType.parse("multipart/form-data"), id);
 
-        Log.e("ddddddd", mUri.toString());
         String IMAGE_PATH = RealPathUtil.getRealPath(this, mUri);
-        Log.e("ffff", IMAGE_PATH);
         File file = new File(IMAGE_PATH);
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -144,6 +138,8 @@ public class UpdateImagesActivity extends AppCompatActivity {
                         } else {
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
                             Toast.makeText(UpdateImagesActivity.this, userResponse.getMessage(), Toast.LENGTH_LONG).show();
+                            setResult(RESULT_OK);
+                            finish();
                         }
                     } else {
                         // Xử lý khi API trả về null
