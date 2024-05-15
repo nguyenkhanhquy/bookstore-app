@@ -63,8 +63,10 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                 newPass = edtMatKhauMoi.getText().toString();
                 confirmNewPass = edtXacNhanMatKhauMoi.getText().toString();
 
-                if (!newPass.equals(confirmNewPass)) {
-                    Toast.makeText(UpdatePasswordActivity.this, "Mật khẩu mới nhập lại không khớp!", Toast.LENGTH_SHORT).show();
+                 if (newPass.length() < 8) {
+                     Toast.makeText(UpdatePasswordActivity.this, "Mật khẩu mới phải chứa ít nhất 8 ký tự", Toast.LENGTH_SHORT).show();
+                } else if (!newPass.equals(confirmNewPass)) {
+                     Toast.makeText(UpdatePasswordActivity.this, "Mật khẩu mới nhập lại không khớp!", Toast.LENGTH_SHORT).show();
                 } else {
                     password = edtMatKhau.getText().toString();
                     updatePassword(password, newPass);

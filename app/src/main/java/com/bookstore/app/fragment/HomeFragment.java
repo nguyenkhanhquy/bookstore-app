@@ -113,7 +113,6 @@ public class HomeFragment extends Fragment {
         productAPIService.loadAllProduct().enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                Toast.makeText(getActivity(),"loadAllProduct", Toast.LENGTH_SHORT).show();
                 productList = response.body();
                 productAdapter = new ProductAdapter(getActivity(),productList);
                 rvProduct.setAdapter(productAdapter);

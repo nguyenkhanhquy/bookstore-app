@@ -9,11 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bookstore.app.R;
 import com.bookstore.app.activity.admin.ManagerProductActivity;
-import com.bookstore.app.activity.UpdatePasswordActivity;
 
 public class ManagerFragment extends Fragment {
 
@@ -25,7 +24,7 @@ public class ManagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_manager_test, container, false);
+        mView = inflater.inflate(R.layout.fragment_manager, container, false);
 
         anhXa();
         initLinsenter();
@@ -47,6 +46,11 @@ public class ManagerFragment extends Fragment {
             }
         });
 
-
+        layoutItemQlDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Quản lý đơn hàng", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

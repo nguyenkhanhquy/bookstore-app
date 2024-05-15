@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.bookstore.app.activity.LoginActivity;
-import com.bookstore.app.model.Role;
 import com.bookstore.app.model.User;
 import com.google.gson.Gson;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "volleyregisterlogin";
     private static final String KEY_USER = "keyuser";
-
     private static SharedPrefManager mInstance;
     private static Context ctx;
 
@@ -53,6 +51,5 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = SharedPreferences.edit();
         editor.clear();
         editor.apply();
-        ctx.startActivity(new Intent(ctx, LoginActivity.class));
     }
 }

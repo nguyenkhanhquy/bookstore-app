@@ -18,6 +18,7 @@ import com.bookstore.app.R;
 import com.bookstore.app.activity.DetailAccountActivity;
 import com.bookstore.app.activity.LoginActivity;
 import com.bookstore.app.activity.UpdatePasswordActivity;
+import com.bookstore.app.model.Cart;
 import com.bookstore.app.model.User;
 import com.bookstore.app.util.SharedPrefManager;
 import com.bumptech.glide.Glide;
@@ -91,6 +92,8 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 SharedPrefManager.getInstance(getActivity()).logout();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Cart cart = new Cart(getActivity());
+                cart.clearCart();
                 startActivity(intent);
                 getActivity().finish();
             }

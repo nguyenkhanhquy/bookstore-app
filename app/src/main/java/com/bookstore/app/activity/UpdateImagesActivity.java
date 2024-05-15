@@ -92,7 +92,7 @@ public class UpdateImagesActivity extends AppCompatActivity {
                 if (mUri != null) {
                     uploadImage();
                 } else {
-                    Toast.makeText(UpdateImagesActivity.this, "mUri null", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateImagesActivity.this, "Vui lòng chọn hình ảnh", Toast.LENGTH_LONG).show();
                 }
             }
         });
