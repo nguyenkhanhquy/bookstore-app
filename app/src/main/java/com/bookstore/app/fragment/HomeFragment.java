@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bookstore.app.R;
 import com.bookstore.app.activity.CartActivity;
+import com.bookstore.app.activity.DetailProductActivity;
 import com.bookstore.app.adapter.ProductAdapter;
 import com.bookstore.app.model.Product;
 import com.bookstore.app.service.ProductAPIService;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     private ImageButton cart;
 
     private androidx.appcompat.widget.SearchView searchView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -123,4 +125,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+
 }

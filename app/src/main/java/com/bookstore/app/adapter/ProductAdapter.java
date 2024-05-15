@@ -1,9 +1,12 @@
 package com.bookstore.app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.RouteListingPreference;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
+import com.bookstore.app.activity.DetailProductActivity;
 import com.bookstore.app.model.Product;
 import com.bumptech.glide.Glide;
 
@@ -45,7 +50,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
-        Product product = mProducts.get(position);
+        final Product product = mProducts.get(position);
         if (product == null) {
             Log.e("Erorr", "Product is null at position: " + position);
             return;
@@ -62,6 +67,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.nameProduct.setText(product.getName());
         holder.priceProduct.setText(String.valueOf(product.getPrice()));
+        holder.layoutItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnClickGoToDetail(product);
+            }
+        });
+
+
+    }
+
+    private void OnClickGoToDetail(Product product) {
+        Intent intent = new Intent(mContext, DetailProductActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("obiect_product", product);
+        intent.putExtras(bundle);
+        mContext.startActivity(intent);
     }
 
     @Override
@@ -70,15 +91,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
+
         private ImageView imageProduct;
         private TextView nameProduct;
         private TextView priceProduct;
+
+        private ConstraintLayout layoutItem;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
             imageProduct = itemView.findViewById(R.id.imageProduct);
             nameProduct = itemView.findViewById(R.id.nameProduct);
             priceProduct = itemView.findViewById(R.id.priceProduct);
+            layoutItem = itemView.findViewById(R.id.cardView);
 
             //  Bắt sự kiện cho item holder trong MyViewHolder
             itemView.setOnClickListener(v -> {

@@ -59,6 +59,9 @@
             android:name=".activity.admin.MainAdminActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.DetailProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
