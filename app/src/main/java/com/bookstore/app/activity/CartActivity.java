@@ -1,9 +1,11 @@
 package com.bookstore.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
+import com.bookstore.app.activity.CheckOutActivity;
 import com.bookstore.app.adapter.CartItemAdapter;
 import com.bookstore.app.model.Cart;
 import com.bookstore.app.model.CartItem;
@@ -27,6 +30,7 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.C
     private ImageButton back;
     private TextView totalPrice;
     private Cart cart;
+    private Button btnDatHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.C
     private void anhXa() {
         back = findViewById(R.id.back);
         totalPrice = findViewById(R.id.totalPrice);
+        btnDatHang = findViewById(R.id.Checkout);
     }
 
     private void initListener() {
@@ -57,6 +62,14 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.C
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        btnDatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, CheckOutActivity.class);
+                startActivity(intent);
             }
         });
     }
