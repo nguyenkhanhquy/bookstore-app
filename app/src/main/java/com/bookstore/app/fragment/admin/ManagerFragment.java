@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bookstore.app.R;
@@ -17,13 +18,14 @@ import com.bookstore.app.activity.UpdatePasswordActivity;
 public class ManagerFragment extends Fragment {
 
     private View mView;
-    private TextView txtQuanLySanPham, txtQuanLyHoaDon;
+    private RelativeLayout layoutItemQlProduct;
+    private  RelativeLayout layoutItemQlDonHang;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_manager, container, false);
+        mView = inflater.inflate(R.layout.fragment_manager_test, container, false);
 
         anhXa();
         initLinsenter();
@@ -32,13 +34,12 @@ public class ManagerFragment extends Fragment {
     }
 
     private void anhXa(){
-        txtQuanLySanPham = mView.findViewById(R.id.txtQuanLySanPham);
-        txtQuanLyHoaDon = mView.findViewById(R.id.txtQuanLyDonHang);
+        layoutItemQlProduct = mView.findViewById(R.id.cardItemQLProduct);
+        layoutItemQlDonHang = mView.findViewById(R.id.cardItemQLDonHang);
     }
 
     private void initLinsenter() {
-
-        txtQuanLySanPham.setOnClickListener(new View.OnClickListener() {
+        layoutItemQlProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ManagerProductActivity.class);
@@ -46,11 +47,6 @@ public class ManagerFragment extends Fragment {
             }
         });
 
-        txtQuanLyHoaDon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 }
