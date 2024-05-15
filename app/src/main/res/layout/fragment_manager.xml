@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:drawableStart="@drawable/ic_manage_accounts"
+            android:drawableStart="@drawable/baseline_book_black"
             android:drawablePadding="10dp"
             android:text="Quản lý sản phẩm"
             android:textSize="28sp" />
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:drawableStart="@drawable/ic_password"
+            android:drawableStart="@drawable/ic_edit"
             android:drawablePadding="10dp"
             android:text="Quản lý đơn hàng"
             android:textSize="28sp" />

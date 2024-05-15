@@ -49,8 +49,7 @@ public class ManagerFragment extends Fragment {
         txtQuanLyHoaDon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UpdatePasswordActivity.class);
-                startActivity(intent);
+
             }
         });
     }
