@@ -1,15 +1,13 @@
 package com.bookstore.app.util;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.bookstore.app.activity.LoginActivity;
 import com.bookstore.app.model.User;
 import com.google.gson.Gson;
 
 public class SharedPrefManager {
-    private static final String SHARED_PREF_NAME = "volleyregisterlogin";
+    private static final String SHARED_PREF_NAME = "user_shared_prefs";
     private static final String KEY_USER = "keyuser";
     private static SharedPrefManager mInstance;
     private static Context ctx;
