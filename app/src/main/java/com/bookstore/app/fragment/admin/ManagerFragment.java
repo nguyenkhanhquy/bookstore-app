@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bookstore.app.R;
+import com.bookstore.app.activity.admin.ManagerEmployeeActivity;
 import com.bookstore.app.activity.admin.ManagerProductActivity;
 
 public class ManagerFragment extends Fragment {
@@ -19,6 +20,7 @@ public class ManagerFragment extends Fragment {
     private View mView;
     private RelativeLayout layoutItemQlProduct;
     private  RelativeLayout layoutItemQlDonHang;
+    private RelativeLayout layoutItemQlNhanVien;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +37,7 @@ public class ManagerFragment extends Fragment {
     private void anhXa(){
         layoutItemQlProduct = mView.findViewById(R.id.cardItemQLProduct);
         layoutItemQlDonHang = mView.findViewById(R.id.cardItemQLDonHang);
+        layoutItemQlNhanVien = mView.findViewById(R.id.cardItemQLNhanVien);
     }
 
     private void initLinsenter() {
@@ -50,6 +53,14 @@ public class ManagerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Quản lý đơn hàng", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        layoutItemQlNhanVien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ManagerEmployeeActivity.class);
+                startActivity(intent);
             }
         });
     }
