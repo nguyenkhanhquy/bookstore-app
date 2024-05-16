@@ -45,7 +45,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         TextView priceProduct;
         TextView quantity;
         ImageView imageProduct;
-        ImageButton delete;
+        ImageButton delete, plus, minus;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,16 +54,18 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             nameProduct = itemView.findViewById(R.id.nameProduct);
             quantity = itemView.findViewById(R.id.quantity);
             delete = itemView.findViewById(R.id.delete);
+            plus = itemView.findViewById(R.id.plus);
+            minus = itemView.findViewById(R.id.minus);
 
-            //  Bắt sự kiện cho item holder trong MyViewHolder
-            itemView.setOnClickListener(v -> {
-                // Xử lý khi nhấp vào Item trên CartItem
-                int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    CartItem cartItem = cartitemList.get(position);
-                    Toast.makeText(context, "Bạn đã chọn CartItem: " + cartItem.getId(), Toast.LENGTH_SHORT).show();
-                }
-            });
+//            //  Bắt sự kiện cho item holder trong MyViewHolder
+//            itemView.setOnClickListener(v -> {
+//                // Xử lý khi nhấp vào Item trên CartItem
+//                int position = getAdapterPosition();
+//                if (position != RecyclerView.NO_POSITION) {
+//                    CartItem cartItem = cartitemList.get(position);
+//                    Toast.makeText(context, "Bạn đã chọn CartItem: " + cartItem.getId(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
         }
     }
 
@@ -78,11 +80,33 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             public void onClick(View v) {
                 cart = new Cart(context);
                 cart.removeFromCart(String.valueOf(cartItem.getId()));
-                Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
                 // Thông báo cho activity khi một mục đã được xóa khỏi giỏ hàng
                 if (cartItemListener != null) {
                     cartItemListener.onCartItemRemoved();
-                    Toast.makeText(context, "Đã load lại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cart = new Cart(context);
+                cart.plusCart(cartItem);
+                if (cartItemListener != null) {
+                    cartItemListener.onCartItemRemoved();
+                }
+            }
+        });
+        holder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cart = new Cart(context);
+                if (cartItem.getQuantity() >= 2) {
+                    cart.minusCart(cartItem);
+                } else {
+                    cart.removeFromCart(String.valueOf(cartItem.getId()));
+                }
+                if (cartItemListener != null) {
+                    cartItemListener.onCartItemRemoved();
                 }
             }
         });

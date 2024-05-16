@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -32,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="Checkout"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,8 +101,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/metropolis_black"
                         android:text="Thông tin đơn hàng"
+                        android:layout_marginBottom="4dp"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,16 +112,19 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tên:"
-                        app:layout_constraintEnd_toStartOf="@+id/name"
+                        android:text="Họ và tên:"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@+id/txtHoVaTen"
                         app:layout_constraintHorizontal_bias="0.046"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
                     <TextView
-                        android:id="@+id/name"
+                        android:id="@+id/txtHoVaTen"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:text="Nguyễn Khánh Quy"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView10"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView10" />
@@ -130,22 +133,27 @@
                         android:id="@+id/textView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="12dp"
                         android:text="Địa chỉ:"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                     <TextView
-                        android:id="@+id/address"
-                        android:singleLine="false"
-                        android:maxEms="10"
+                        android:id="@+id/txtDiaChi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:maxEms="10"
+                        android:singleLine="false"
+                        android:text="Hồ Chí Minh"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView13"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView13" />
+                        app:layout_constraintTop_toTopOf="@+id/textView13"
+                        app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -181,15 +189,15 @@
                         android:fontFamily="@font/metropolis_black"
                         android:text="Chi tiết đơn hàng"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        tools:listitem="@layout/checkout_item"
-                        android:id="@+id/orderList"
+                        android:id="@+id/rc_checkout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="14dp"
-                        android:layout_marginBottom="20dp" />
+                        android:layout_marginBottom="20dp"
+                        tools:listitem="@layout/checkout_item" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -210,129 +218,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView2"
                 app:layout_constraintVertical_bias="0.0">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:id="@+id/textViewtitle1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/metropolis_black"
-                        android:text="Phí giao hàng"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/deliveryList"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewtitle1" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/bg_stroke"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:id="@+id/textViewtitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/metropolis_black"
-                        android:text="Chi tiết thanh toán"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="Tiền sản phẩm:"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewtitle" />
-
-
-                    <TextView
-                        android:id="@+id/subPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView19" />
-
-                    <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="Phí giao hàng:"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-
-                    <TextView
-                        android:id="@+id/shipping"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView20"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView20" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-    <View
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/GreyV2"
-        android:layout_marginBottom="2dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp" />
+
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
@@ -357,19 +248,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng:" />
+                android:text="Tổng thanh toán:"
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/total"
+                android:id="@+id/totalPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/metropolis_bold"
-                android:text="0"
+                android:text="100000 VNĐ"
+                android:textSize="20sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/BtnOrder"
+            android:id="@+id/btnOrder"
             style="@style/MainButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -378,12 +271,13 @@
             android:layout_weight="1"
             android:fontFamily="@font/metropolis_medium"
             android:text= "Đặt hàng"
+            android:textSize="20sp"
+            android:background="@color/black"
+            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
-
-
 
 </LinearLayout>
 

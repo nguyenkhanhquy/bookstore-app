@@ -40,7 +40,7 @@
         android:fontFamily="@font/metropolis_bold"
         android:text="Pullover"
         android:textColor="#000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/delete"
         app:layout_constraintStart_toEndOf="@+id/imageProduct"
         app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +106,7 @@
         android:fontFamily="@font/metropolis_black"
         android:text="15000"
         android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
         app:layout_constraintStart_toStartOf="@+id/nameProduct"
         app:layout_constraintTop_toTopOf="@+id/linearLayout5" />
@@ -123,8 +123,8 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <RelativeLayout
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:padding="7dp">
 
             <ImageButton
@@ -138,14 +138,15 @@
 
         <TextView
             android:id="@+id/quantity"
-            android:layout_width="30dp"
-            android:layout_height="24dp"
+            android:layout_width="40dp"
+            android:layout_height="32dp"
+            android:textSize="20sp"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/White" />
 
         <RelativeLayout
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:padding="7dp">
 
             <ImageButton

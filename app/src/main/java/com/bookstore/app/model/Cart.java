@@ -49,6 +49,40 @@ public class Cart {
         cartItems = getAllCartItems(); // Refresh the cart items list
     }
 
+    public void plusCart(CartItem item) {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(CART_SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(String.valueOf(item.getId()), null);
+        if (json != null) {
+            CartItem existingItem = gson.fromJson(json, CartItem.class);
+            existingItem.setQuantity(existingItem.getQuantity() + 1);
+            json = gson.toJson(existingItem);
+        } else {
+            json = gson.toJson(item);
+        }
+        editor.putString(String.valueOf(item.getId()), json);
+        editor.apply();
+        cartItems = getAllCartItems(); // Refresh the cart items list
+    }
+
+    public void minusCart(CartItem item) {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(CART_SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(String.valueOf(item.getId()), null);
+        if (json != null) {
+            CartItem existingItem = gson.fromJson(json, CartItem.class);
+            existingItem.setQuantity(existingItem.getQuantity() - 1);
+            json = gson.toJson(existingItem);
+        } else {
+            json = gson.toJson(item);
+        }
+        editor.putString(String.valueOf(item.getId()), json);
+        editor.apply();
+        cartItems = getAllCartItems(); // Refresh the cart items list
+    }
+
     public CartItem getCartItem(String id) {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(CART_SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String json = sharedPreferences.getString(id, null);

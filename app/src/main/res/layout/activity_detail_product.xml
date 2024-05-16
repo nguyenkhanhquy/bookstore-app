@@ -203,6 +203,8 @@
     <Button
         android:id="@+id/addToCart"
         style="@style/MainButton"
+        android:background="@color/colorPrimary"
+        app:backgroundTint="@null"
         android:layout_width="0dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="1"

@@ -68,8 +68,12 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.C
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CartActivity.this, CheckOutActivity.class);
-                startActivity(intent);
+                if (cart.getAllCartItems().isEmpty()) {
+                    Toast.makeText(CartActivity.this, "Giỏ hàng trống", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(CartActivity.this, CheckOutActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -81,11 +85,11 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.C
         rcCart.setLayoutManager(new LinearLayoutManager(CartActivity.this, RecyclerView.VERTICAL, false));
         rcCart.setAdapter(cartItemAdapter);
 
-        double totalPrice = 0;
+        int totalPrice = 0;
         // Lặp qua danh sách cartitemList
         for (CartItem cartItem : cartitemList) {
             // Lấy giá của mỗi CartItem và cộng vào totalPrice
-            totalPrice += cartItem.getQuantity() * cartItem.getProduct().getPrice();
+            totalPrice += (int) (cartItem.getQuantity() * cartItem.getProduct().getPrice());
         }
         this.totalPrice.setText(totalPrice + " VNĐ");
 

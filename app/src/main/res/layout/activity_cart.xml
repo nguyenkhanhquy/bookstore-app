@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="Cart"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,17 +136,21 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="14dp"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng tiền" />
+                android:text="Tổng tiền:"
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/totalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/metropolis_bold"
                 android:layout_marginTop="4dp"
-                android:text="100000 VNĐ"/>
+                android:text="100000 VNĐ"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <Button
@@ -159,6 +163,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/metropolis_medium"
             android:text="Đặt hàng"
+            android:textSize="20sp"
             android:background="@color/black"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
