@@ -1,6 +1,5 @@
 package com.bookstore.app.activity.admin;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,14 +11,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.Product;
 import com.bookstore.app.model.User;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.ObjectKey;
 
 public class DetailEmployeeActivity extends AppCompatActivity {
     private User user;
-    private ProgressDialog progressDialog;
     private ImageView imgUser;
     private TextView txtUserName;
     private TextView txtFullName;
@@ -40,19 +37,11 @@ public class DetailEmployeeActivity extends AppCompatActivity {
             return;
         user = (User) bundle.get("object_user");
         anhXa();
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Đang xử lý...");
-
-        String imageUrl = user.getImages(); // URL hình ảnh của bạn
-        //txtEmail.setText(imageUrl);
-        /*Glide.with(this)
-                .load(imageUrl)
-                .into(imgUser);*/
         // Load ảnh với Glide
-        /*Glide.with(this)
+        Glide.with(this)
                 .load(user.getImages())
                 .signature(new ObjectKey(System.currentTimeMillis()))
-                .into(imgUser);*/
+                .into(imgUser);
 
         txtUserName.setText(user.getUserName());
         txtFullName.setText(user.getFullName());
@@ -74,7 +63,7 @@ public class DetailEmployeeActivity extends AppCompatActivity {
     }
 
     private void anhXa() {
-        imgUser = findViewById(R.id.imageEmployee);
+        imgUser = findViewById(R.id.imgUser);
         txtUserName = findViewById(R.id.edtUserName);
         txtFullName = findViewById(R.id.edtFullName);
         txtAddress = findViewById(R.id.edtAddress);
