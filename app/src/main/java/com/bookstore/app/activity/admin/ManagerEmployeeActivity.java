@@ -62,7 +62,8 @@ public class ManagerEmployeeActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(ManagerEmployeeActivity.this, AddEmployeeActivity.class);
+                startActivity(intent);
             }
         });
     }

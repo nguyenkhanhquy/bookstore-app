@@ -79,6 +79,9 @@
             android:name=".activity.admin.DetailEmployeeActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.admin.AddEmployeeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
