@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.activity.CheckOutActivity;
 import com.bookstore.app.adapter.CartItemAdapter;
 import com.bookstore.app.model.Cart;
 import com.bookstore.app.model.CartItem;

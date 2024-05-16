@@ -27,14 +27,10 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookstore.app.R;
-import com.bookstore.app.activity.UpdateImagesActivity;
-import com.bookstore.app.response.ProductResponse;
 import com.bookstore.app.response.ProductResponse;
 import com.bookstore.app.service.ProductAPIService;
 import com.bookstore.app.service.RetrofitClient;
-import com.bookstore.app.service.UserAPIService;
 import com.bookstore.app.util.RealPathUtil;
-import com.bookstore.app.util.SharedPrefManager;
 
 import java.io.File;
 import java.io.IOException;

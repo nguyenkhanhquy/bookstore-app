@@ -8,17 +8,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.adapter.admin.ProductAdapter;
 import com.bookstore.app.adapter.admin.UserAdapter;
-import com.bookstore.app.model.Product;
 import com.bookstore.app.model.User;
-import com.bookstore.app.service.ProductAPIService;
 import com.bookstore.app.service.RetrofitClient;
 import com.bookstore.app.service.UserAPIService;
 
@@ -29,6 +25,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ManagerEmployeeActivity extends AppCompatActivity {
+
+    private static final int ADD_EMPLOYEE_REQUEST_CODE = 1;
     private RecyclerView rcEmployee;
     private UserAdapter userAdapter;
     private UserAPIService userAPIService;
@@ -63,7 +61,7 @@ public class ManagerEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManagerEmployeeActivity.this, AddEmployeeActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, ADD_EMPLOYEE_REQUEST_CODE);
             }
         });
     }
@@ -93,5 +91,13 @@ public class ManagerEmployeeActivity extends AppCompatActivity {
                 Log.e("API Error", "Failed to get product list: " + throwable.getMessage());
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == ADD_EMPLOYEE_REQUEST_CODE) && resultCode == RESULT_OK) {
+            loadAllEmployee();
+        }
     }
 }

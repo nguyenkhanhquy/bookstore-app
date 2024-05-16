@@ -6,31 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/textView13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/blue_round">
+        android:text="Thông tin nhân viên"
+        android:background="@drawable/blue_round"
+        android:drawableLeft="@drawable/baseline_book"
+        android:drawablePadding="8dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
-            android:text="Thông tin nhân viên"
-            android:background="@drawable/blue_round"
-            android:drawableLeft="@drawable/baseline_book"
-            android:drawablePadding="8dp"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <ImageView
-            android:id="@+id/btnDelete"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_delete" />
-
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/imgUser"

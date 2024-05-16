@@ -43,4 +43,7 @@ public interface UserAPIService {
 
     @GET("users/roles/{roleId}")
     Call<List<User>> getListUserByRoleId(@Path("roleId") int roleId);
+
+    @POST("users/add-employee")
+    Call<UserResponse> addEmployee(@Body User user);
 }

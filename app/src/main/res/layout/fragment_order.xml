@@ -52,6 +52,26 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcCONFORMED"
+                        android:layout_width="match_parent"
+                        android:layout_height="520dp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:listitem="@layout/order_item" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcCANCELED"
                         android:layout_width="match_parent"
                         android:layout_height="520dp"

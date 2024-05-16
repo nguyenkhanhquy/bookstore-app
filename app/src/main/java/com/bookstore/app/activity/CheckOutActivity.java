@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.adapter.CartItemAdapter;
 import com.bookstore.app.adapter.CheckOutItemAdapter;
 import com.bookstore.app.model.Cart;
 import com.bookstore.app.model.CartItem;
@@ -32,7 +31,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private Cart cart;
     private TextView totalPrice;
     private ImageButton btnBack;
-    private TextView txtHoVaTen, txtDiaChi;
+    private TextView txtHoVaTen, txtDiaChi, txtSDT;
     private Button btnOrder;
 
     @Override
@@ -54,6 +53,7 @@ public class CheckOutActivity extends AppCompatActivity {
         User user = SharedPrefManager.getInstance(this).getUser();
         txtDiaChi.setText(user.getAddress());
         txtHoVaTen.setText(user.getFullName());
+        txtSDT.setText(user.getPhone());
 
         cartitemList = cart.getAllCartItems();
         checkOutItemAdapter = new CheckOutItemAdapter(CheckOutActivity.this, cartitemList);
@@ -77,6 +77,7 @@ public class CheckOutActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.back);
         txtHoVaTen = findViewById(R.id.txtHoVaTen);
         txtDiaChi = findViewById(R.id.txtDiaChi);
+        txtSDT = findViewById(R.id.txtSDT);
         totalPrice = findViewById(R.id.totalPrice);
         btnOrder = findViewById(R.id.btnOrder);
     }

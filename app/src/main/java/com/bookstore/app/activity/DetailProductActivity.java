@@ -1,17 +1,10 @@
 package com.bookstore.app.activity;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -21,19 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.activity.admin.MainAdminActivity;
 import com.bookstore.app.model.Cart;
 import com.bookstore.app.model.CartItem;
 import com.bookstore.app.model.Product;
-import com.bookstore.app.model.User;
-import com.bookstore.app.util.SharedPrefManager;
 import com.bumptech.glide.Glide;
-import com.google.android.material.imageview.ShapeableImageView;
-
-import java.util.List;
 
 public class DetailProductActivity extends AppCompatActivity {
     private ImageView cardViewProduct, back, btnCart;

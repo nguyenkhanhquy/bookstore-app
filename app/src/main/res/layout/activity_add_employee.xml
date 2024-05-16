@@ -6,34 +6,34 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".activity.RegisterActivity">
+
+
     <Button
         android:id="@+id/btnAddNV"
         android:layout_width="150dp"
         android:layout_height="48dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="220dp"
         android:background="@drawable/dam_background"
         android:text="Thêm"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.779"
         app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/btnCancelNV"
         android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="160dp"
         android:background="@drawable/dam_background"
         android:text="Đóng"
         app:backgroundTint="@null"
-        app:layout_constraintLeft_toRightOf="@id/btnAddNV"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
-
+        app:layout_constraintLeft_toRightOf="@id/btnAddNV" />
 
     <TextView
         android:id="@+id/textView"
@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:layout_width="412dp"
-        android:layout_height="600dp"
+        android:layout_height="480dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="1dp"
@@ -64,14 +64,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-        android:id="@+id/imgChoose"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        app:srcCompat="@drawable/ic_add_photo_alternate" />
 
         <EditText
             android:id="@+id/edtUserName"

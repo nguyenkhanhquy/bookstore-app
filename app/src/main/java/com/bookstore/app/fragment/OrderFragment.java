@@ -30,14 +30,21 @@ public class OrderFragment extends Fragment {
     private void anhXa() {
         orderTab = mView.findViewById(R.id.orderTap);
         orderTab.setup();
-        TabHost.TabSpec spec1, spec2;
+        TabHost.TabSpec spec1, spec2, spec3;
+
         spec1 = orderTab.newTabSpec("t1");
         spec1.setContent(R.id.tab1);
-        spec1.setIndicator("Chờ xác nhận");
+        spec1.setIndicator("Đang xử lý");
         orderTab.addTab(spec1);
+
         spec2 = orderTab.newTabSpec("t2");
         spec2.setContent(R.id.tab2);
-        spec2.setIndicator("Đã hủy");
+        spec2.setIndicator("Đã xác nhận");
         orderTab.addTab(spec2);
+
+        spec3 = orderTab.newTabSpec("t3");
+        spec3.setContent(R.id.tab3);
+        spec3.setIndicator("Đã hủy");
+        orderTab.addTab(spec3);
     }
 }
