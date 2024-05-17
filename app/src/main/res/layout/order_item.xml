@@ -16,32 +16,31 @@
         android:background="@color/GreyV2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageFood" />
+        app:layout_constraintStart_toEndOf="@+id/imageProduct" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageFood"
-        android:layout_width="105dp"
-        android:layout_height="105dp"
+        android:id="@+id/imageProduct"
+        android:layout_width="12dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="12dp"
-        app:shapeAppearanceOverlay="@style/roundedCorners"
         app:layout_constraintBottom_toBottomOf="@+id/line"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedCorners" />
 
     <TextView
-        android:id="@+id/nameFood"
+        android:id="@+id/idOrder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="11dp"
         android:ellipsize="end"
         android:fontFamily="@font/metropolis_bold"
-        android:text="Pullover"
+        android:text="Mã đơn hàng"
         android:textColor="#000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageFood"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnDetail"
+        app:layout_constraintStart_toEndOf="@+id/imageProduct"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -51,15 +50,16 @@
         android:layout_marginTop="6dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/nameFood"
-        app:layout_constraintTop_toBottomOf="@+id/nameFood">
+        app:layout_constraintStart_toStartOf="@+id/idOrder"
+        app:layout_constraintTop_toBottomOf="@+id/idOrder">
 
         <TextView
-            android:id="@+id/itemCount"
+            android:id="@+id/countItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_medium"
-            android:text="0 items" />
+            android:text="0 items"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="1dp"
@@ -67,56 +67,52 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/GreyV2" />
-
-        <RelativeLayout
-            android:id="@+id/statusReviewLayout"
-            android:layout_width="105dp"
-            android:layout_height="29dp"
-            android:layout_marginEnd="9dp"
-            android:background="@drawable/bg_edit_text"
-            android:backgroundTint="@color/Green">
-
-            <TextView
-                android:id="@+id/statusReviewTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/metropolis_medium"
-                android:text="Completed"
-                android:textColor="@color/White"
-                android:textSize="10sp" />
-        </RelativeLayout>
-
-
     </LinearLayout>
 
 
     <TextView
-        android:id="@+id/foodPrice"
+        android:id="@+id/priceOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/metropolis_black"
         android:text="15000"
         android:layout_marginBottom="4dp"
         android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageFood"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageProduct"
         app:layout_constraintStart_toStartOf="@+id/linearLayout4"/>
 
     <Button
-        android:id="@+id/btnReview"
-        android:layout_width="91dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="11dp"
+        android:id="@+id/btnDetail"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="#43A047"
         android:elevation="4dp"
         android:fontFamily="@font/metropolis_medium"
         android:orientation="horizontal"
-        android:text="Detail"
+        android:text="Chi tiết"
         android:textAllCaps="false"
         android:textColor="@color/White"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageFood"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="4dp"
+        android:fontFamily="@font/metropolis_medium"
+        android:orientation="horizontal"
+        android:text="Hủy"
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageProduct"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -133,10 +133,9 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onResponse(Call<Order> call, Response<Order> response) {
                 if (response.isSuccessful()) {
                     Order order = response.body();
-                    Log.e("addedOrder", order.toString());
 
                     cart.clearCart();
-                    Toast.makeText(CheckOutActivity.this, "Đã đặt hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheckOutActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CheckOutActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
