@@ -1,6 +1,6 @@
 package com.bookstore.app.model;
 
-import java.io.Serializable;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +8,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class Role implements Serializable {
+public class Order {
 
     private int id;
-    private String name;
+    private OrderTrack orderTrack;
+    private User user;
+    private List<OrderItem> orderItems;
 }

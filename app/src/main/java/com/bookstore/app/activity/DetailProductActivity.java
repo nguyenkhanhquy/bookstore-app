@@ -3,7 +3,6 @@ package com.bookstore.app.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -96,7 +95,6 @@ public class DetailProductActivity extends AppCompatActivity {
                 CartItem cartItem = new CartItem(product.getId(), product, 1);
                 cart.addToCart(cartItem);
                 Toast.makeText(getApplicationContext(), "Added to cart", Toast.LENGTH_SHORT).show();
-                Log.e("Cart: ", cart.getAllCartItems().toString());
             }
         });
     }

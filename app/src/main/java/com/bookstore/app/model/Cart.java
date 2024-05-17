@@ -3,7 +3,6 @@ package com.bookstore.app.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bookstore.app.util.SharedPrefManager;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

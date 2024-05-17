@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bookstore.app.R;
 import com.bookstore.app.activity.DetailProductActivity;
 import com.bookstore.app.activity.admin.DetailEmployeeActivity;
-import com.bookstore.app.activity.admin.UpdateProductActivity;
 import com.bookstore.app.model.Product;
 import com.bookstore.app.model.User;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.ObjectKey;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {

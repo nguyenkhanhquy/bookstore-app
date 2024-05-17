@@ -1,19 +1,17 @@
 package com.bookstore.app.model;
 
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class Role implements Serializable {
+public class OrderTrack {
 
     private int id;
     private String name;

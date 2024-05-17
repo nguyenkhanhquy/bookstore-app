@@ -2,20 +2,18 @@ package com.bookstore.app.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bookstore.app.R;
 import com.bookstore.app.activity.CartActivity;
-import com.bookstore.app.activity.DetailProductActivity;
 import com.bookstore.app.adapter.ProductAdapter;
 import com.bookstore.app.model.Product;
 import com.bookstore.app.service.ProductAPIService;

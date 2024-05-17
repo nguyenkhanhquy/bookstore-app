@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
-import com.bookstore.app.model.Cart;
 import com.bookstore.app.model.CartItem;
 import com.bumptech.glide.Glide;
 
