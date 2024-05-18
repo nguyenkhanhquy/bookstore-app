@@ -24,13 +24,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/metropolis_bold"
-                android:text="BookStore đồng hành cùng bạn..."
-                android:textSize="20sp" />
+                android:text="BookStore"
+                android:textSize="32sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentTop="true"
@@ -155,7 +156,7 @@
                     android:layout_alignParentBottom="true"
                     android:fontFamily="@font/metropolis_bold"
                     android:text="Danh sách sản phẩm"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

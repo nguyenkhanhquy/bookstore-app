@@ -28,9 +28,10 @@
         android:layout_height="48dp"
         android:layout_marginEnd="140dp"
         android:layout_marginBottom="160dp"
-        android:background="@drawable/dam_background"
-        android:text="Đóng"
+        android:background="@drawable/nhat_background"
+        android:text="Hủy"
         app:backgroundTint="@null"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnAddNV" />

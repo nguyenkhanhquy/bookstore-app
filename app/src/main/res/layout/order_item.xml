@@ -9,6 +9,23 @@
     android:layout_marginTop="20dp"
     android:layout_marginBottom="7dp">
 
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/xanh_chu_de"
+        android:elevation="4dp"
+        android:fontFamily="@font/metropolis_medium"
+        android:orientation="horizontal"
+        android:text="Xác nhận"
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageProduct"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel" />
+
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
@@ -21,7 +38,7 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageProduct"
         android:layout_width="12dp"
-        android:layout_height="100dp"
+        android:layout_height="112dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/line"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +64,7 @@
         android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="@+id/idOrder"
@@ -67,24 +84,36 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/GreyV2" />
+
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/dateOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/metropolis_medium"
+        android:text="01/01/2000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/idOrder" />
 
     <TextView
         android:id="@+id/priceOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/metropolis_black"
-        android:text="15000"
         android:layout_marginBottom="4dp"
+        android:fontFamily="@font/metropolis_black"
+        android:text="15000 VNĐ"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageProduct"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout4"/>
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4" />
 
     <Button
         android:id="@+id/btnDetail"
-        android:layout_width="112dp"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:backgroundTint="#43A047"
@@ -100,7 +129,7 @@
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="112dp"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="4dp"

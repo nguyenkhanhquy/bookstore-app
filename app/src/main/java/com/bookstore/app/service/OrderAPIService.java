@@ -11,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface OrderAPIService {
@@ -26,4 +27,7 @@ public interface OrderAPIService {
     @POST("orders/update-status")
     Call<Order> updateStatus(@Field("orderId") int orderId,
                              @Field("orderTrackId") int orderTrackId);
+
+    @GET("orders/status/{orderTrackId}")
+    Call<List<Order>> getOrdersByOrderTrackId(@Path("orderTrackId") int orderTrackId);
 }

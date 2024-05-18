@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bookstore.app.R;
 import com.bookstore.app.activity.admin.ManagerEmployeeActivity;
+import com.bookstore.app.activity.admin.ManagerOrderActivity;
 import com.bookstore.app.activity.admin.ManagerProductActivity;
 import com.bookstore.app.model.User;
 import com.bookstore.app.util.SharedPrefManager;
@@ -66,7 +67,8 @@ public class ManagerFragment extends Fragment {
         layoutItemQlDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Quản lý đơn hàng", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ManagerOrderActivity.class);
+                startActivity(intent);
             }
         });
 

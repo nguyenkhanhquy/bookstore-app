@@ -26,7 +26,6 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView priceProduct;
     private WebView descripProduct;
     private Button addToCart;
-    private ProgressDialog progressDialog;
     private Product product;
     private Cart cart;
 
@@ -44,14 +43,11 @@ public class DetailProductActivity extends AppCompatActivity {
             return;
 
         product = (Product) bundle.get("obiect_product");
-        anhXa();
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Đang xử lý...");
 
-        String imageUrl = product.getImages(); // URL hình ảnh của bạn
+        anhXa();
 
         Glide.with(this)
-                .load(imageUrl)
+                .load(product.getImages())
                 .into(cardViewProduct);
 
         nameProduct.setText(product.getName());

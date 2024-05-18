@@ -75,11 +75,9 @@ public class ManagerEmployeeActivity extends AppCompatActivity {
                     userList = response.body(); // Nhận mảng
 
                     userAdapter = new UserAdapter(ManagerEmployeeActivity.this, userList);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(ManagerEmployeeActivity.this, RecyclerView.VERTICAL, true);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(ManagerEmployeeActivity.this, RecyclerView.VERTICAL, false);
                     rcEmployee.setLayoutManager(layoutManager);
                     rcEmployee.setAdapter(userAdapter);
-                    // Cuộn về vị trí đầu danh sách
-                    layoutManager.scrollToPositionWithOffset(userList.size() - 1, 0);
                 } else {
                     int statusCode = response.code();
                     Log.e("API Error", "Status code: " + statusCode);

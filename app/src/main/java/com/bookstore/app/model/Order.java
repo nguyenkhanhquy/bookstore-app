@@ -1,5 +1,6 @@
 package com.bookstore.app.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,10 +14,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Order {
+public class Order implements Serializable {
 
     private int id;
     private OrderTrack orderTrack;
     private User user;
     private List<OrderItem> orderItems;
+    private String date;
 }

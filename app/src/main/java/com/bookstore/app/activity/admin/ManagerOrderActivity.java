@@ -1,23 +1,22 @@
-package com.bookstore.app.fragment;
+package com.bookstore.app.activity.admin;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookstore.app.R;
 import com.bookstore.app.adapter.OrderAdapter;
 import com.bookstore.app.model.Order;
-import com.bookstore.app.model.User;
 import com.bookstore.app.service.OrderAPIService;
 import com.bookstore.app.service.RetrofitClient;
-import com.bookstore.app.util.SharedPrefManager;
 
 import java.util.List;
 
@@ -25,35 +24,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrderFragment extends Fragment implements OrderAdapter.OnOrderCancelListener {
+public class ManagerOrderActivity extends AppCompatActivity implements OrderAdapter.OnOrderCancelListener {
 
     private RecyclerView rcPROCESSING, rcCONFIRMED, rcCANCELED;
     private OrderAPIService orderAPIService;
     private OrderAdapter orderAdapter;
     private List<Order> orderList;
-    private View mView;
+    ImageView btnBack;
     private TabHost orderTab;
-    private User user;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_order, container, false);
-
-        user = SharedPrefManager.getInstance(getActivity()).getUser();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_manager_order);
 
         anhXa();
         initView();
         loadData();
-
-        return mView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadData();
+        initListener();
     }
 
     @Override
@@ -62,19 +52,21 @@ public class OrderFragment extends Fragment implements OrderAdapter.OnOrderCance
     }
 
     public void loadData() {
-        getListOrderProcessing(user.getId());
-        getListOrderConfirmed(user.getId());
-        getListOrderCanceled(user.getId());
+        getListOrderProcessing();
+        getListOrderConfirmed();
+        getListOrderCanceled();
     }
 
     private void initView() {
-        rcPROCESSING = mView.findViewById(R.id.rcPROCESSING);
-        rcCONFIRMED = mView.findViewById(R.id.rcCONFIRMED);
-        rcCANCELED = mView.findViewById(R.id.rcCANCELED);
+        rcPROCESSING = findViewById(R.id.rcPROCESSING);
+        rcCONFIRMED = findViewById(R.id.rcCONFIRMED);
+        rcCANCELED = findViewById(R.id.rcCANCELED);
     }
 
     private void anhXa() {
-        orderTab = mView.findViewById(R.id.orderTap);
+        btnBack = findViewById(R.id.btnBack);
+
+        orderTab = findViewById(R.id.orderTap);
         orderTab.setup();
         TabHost.TabSpec spec1, spec2, spec3;
 
@@ -94,71 +86,80 @@ public class OrderFragment extends Fragment implements OrderAdapter.OnOrderCance
         orderTab.addTab(spec3);
     }
 
-    private void getListOrderProcessing(int userId) {
+    private void initListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private void getListOrderProcessing() {
         orderAPIService = RetrofitClient.getRetrofit().create(OrderAPIService.class);
-        orderAPIService.getOrdersByUserIdAndOrderTrackId(userId, 1).enqueue(new Callback<List<Order>>() {
+        orderAPIService.getOrdersByOrderTrackId(1).enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful()) {
                     orderList = response.body();
 
-                    orderAdapter = new OrderAdapter(getActivity(), orderList, OrderFragment.this);
-                    rcPROCESSING.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+                    orderAdapter = new OrderAdapter(ManagerOrderActivity.this, orderList, ManagerOrderActivity.this);
+                    rcPROCESSING.setLayoutManager(new LinearLayoutManager(ManagerOrderActivity.this, RecyclerView.VERTICAL, false));
                     rcPROCESSING.setAdapter(orderAdapter);
                 } else {
-                    Toast.makeText(getActivity(), "Failed to fetch orders", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManagerOrderActivity.this, "Failed to fetch orders", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ManagerOrderActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getListOrderConfirmed(int userId) {
+    private void getListOrderConfirmed() {
         orderAPIService = RetrofitClient.getRetrofit().create(OrderAPIService.class);
-        orderAPIService.getOrdersByUserIdAndOrderTrackId(userId, 2).enqueue(new Callback<List<Order>>() {
+        orderAPIService.getOrdersByOrderTrackId(2).enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful()) {
                     orderList = response.body();
 
-                    orderAdapter = new OrderAdapter(getActivity(), orderList, OrderFragment.this);
-                    rcCONFIRMED.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+                    orderAdapter = new OrderAdapter(ManagerOrderActivity.this, orderList, ManagerOrderActivity.this);
+                    rcCONFIRMED.setLayoutManager(new LinearLayoutManager(ManagerOrderActivity.this, RecyclerView.VERTICAL, false));
                     rcCONFIRMED.setAdapter(orderAdapter);
                 } else {
-                    Toast.makeText(getActivity(), "Failed to fetch orders", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManagerOrderActivity.this, "Failed to fetch orders", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ManagerOrderActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getListOrderCanceled(int userId) {
+    private void getListOrderCanceled() {
         orderAPIService = RetrofitClient.getRetrofit().create(OrderAPIService.class);
-        orderAPIService.getOrdersByUserIdAndOrderTrackId(userId, 3).enqueue(new Callback<List<Order>>() {
+        orderAPIService.getOrdersByOrderTrackId(3).enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful()) {
                     orderList = response.body();
 
-                    orderAdapter = new OrderAdapter(getActivity(), orderList, OrderFragment.this);
-                    rcCANCELED.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+                    orderAdapter = new OrderAdapter(ManagerOrderActivity.this, orderList, ManagerOrderActivity.this);
+                    rcCANCELED.setLayoutManager(new LinearLayoutManager(ManagerOrderActivity.this, RecyclerView.VERTICAL, false));
                     rcCANCELED.setAdapter(orderAdapter);
                 } else {
-                    Toast.makeText(getActivity(), "Failed to fetch orders", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManagerOrderActivity.this, "Failed to fetch orders", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ManagerOrderActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

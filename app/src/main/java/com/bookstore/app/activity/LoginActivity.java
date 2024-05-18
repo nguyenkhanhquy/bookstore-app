@@ -114,9 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                         if(userResponse.isError()) {
                             txtLoi.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
                         } else {
-                            Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
-
+                            Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             if (userResponse.getUser().getRole().getId() == 1) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
