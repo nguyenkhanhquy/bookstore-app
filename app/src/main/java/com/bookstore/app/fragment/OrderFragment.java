@@ -45,9 +45,7 @@ public class OrderFragment extends Fragment {
         anhXa();
         initView();
 
-        getListOrderProcessing(user.getId());
-        getListOrderConfirmed(user.getId());
-        getListOrderCanceled(user.getId());
+        updateData();
 
         return mView;
     }
@@ -55,10 +53,15 @@ public class OrderFragment extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
+        updateData();
+    }
+
+    public void updateData() {
         getListOrderProcessing(user.getId());
         getListOrderConfirmed(user.getId());
         getListOrderCanceled(user.getId());
     }
+
 
     private void initView() {
         rcPROCESSING = mView.findViewById(R.id.rcPROCESSING);

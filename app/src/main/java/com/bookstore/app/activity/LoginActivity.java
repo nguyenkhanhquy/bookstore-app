@@ -115,7 +115,6 @@ public class LoginActivity extends AppCompatActivity {
                             txtLoi.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
                         } else {
                             Toast.makeText(LoginActivity.this, userResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.d("User", userResponse.getUser().toString());
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(userResponse.getUser());
 
                             if (userResponse.getUser().getRole().getId() == 1) {
