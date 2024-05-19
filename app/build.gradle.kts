@@ -49,4 +49,12 @@ dependencies {
     // Load ảnh với Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Thư viện circle images, bo góc tròn cho ImageView
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    // Lombok
+    implementation("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+
 }

@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">BookStoreApp</string>
+    <string name="app_name">Book Store</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="user">Profile</string>
+    <string name="not_processed">NOT PROCESS</string>
+    <string name="processing">PROCESSING</string>
+    <string name="shipped">SHIPPING</string>
+    <string name="delivered">DELIVERED</string>
+    <string name="cancelled">CANCELED</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
