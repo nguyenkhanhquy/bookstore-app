@@ -50,7 +50,7 @@ Instructions on how to install, configure, and run the Book Store APP project.
 - [@nguyenkhanhquy](https://github.com/nguyenkhanhquy) - Nguyễn Khánh Quy - 21110282
 - [@AnhNguyet2003](https://github.com/AnhNguyet2003) - Nguyễn Trương Ánh Nguyệt - 21110264
 - [@MiuKay](https://github.com/MiuKay) - Võ Chí Khương
-- [@VTNaad](https://github.com/VTNaad) - Võ Thế Dân
+- [@VTNaad](https://github.com/VTNaad) - Võ Thế Dân - 21110149
 
 ## Author
 
