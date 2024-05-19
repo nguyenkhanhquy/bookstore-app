@@ -2,6 +2,14 @@
 
 Final term project of the "Mobile Programming" course - Book Store APP.
 
+## Use Case Diagram
+
+![Use Case Diagram](./assets/usecase_diagram.jpg)
+
+## Class Diagram
+
+![Class Diagram](./assets/class_diagram.jpg)
+
 ## Getting Started
 
 Instructions on how to install, configure, and run the Book Store APP project.
