@@ -15,7 +15,7 @@
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:background="@color/GreyV2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
         android:fontFamily="@font/metropolis_bold"
         android:text="Pullover"
         android:textColor="#000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageProduct"
         app:layout_constraintTop_toTopOf="parent" />
@@ -106,8 +106,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/metropolis_black"
-        android:text="15000"
-        android:textSize="16sp"
+        android:text="15000 VNĐ"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageProduct"
         app:layout_constraintStart_toStartOf="@+id/linearLayout4"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />

@@ -13,16 +13,16 @@
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:background="@color/GreyV2"
-        app:layout_constraintStart_toStartOf="@+id/priceProduct"
+        app:layout_constraintStart_toStartOf="@+id/imageProduct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageProduct"
-        android:layout_width="105dp"
-        android:layout_height="105dp"
+        android:layout_width="116dp"
+        android:layout_height="116dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/line"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,12 +104,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/metropolis_black"
-        android:text="15000"
+        android:text="15000 VNĐ"
         android:textColor="@color/colorPrimary"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
         app:layout_constraintStart_toStartOf="@+id/nameProduct"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout5" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"

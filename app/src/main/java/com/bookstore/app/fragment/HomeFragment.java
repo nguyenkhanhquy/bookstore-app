@@ -19,8 +19,10 @@ import com.bookstore.app.model.Product;
 import com.bookstore.app.service.ProductAPIService;
 import com.bookstore.app.service.RetrofitClient;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,16 +93,24 @@ public class HomeFragment extends Fragment {
 
         searchView.setOnQueryTextListener(listener);
     }
+
     private void searchProduct(String query) {
         List<Product> searchProductList = new ArrayList<>();
-        String lowerCaseQuery = query.toLowerCase();  // Chuyển truy vấn về chữ thường
-        for ( Product i: productList ) {
-            if (i.getName().toLowerCase().contains(lowerCaseQuery)) {  // Chuyển tên sản phẩm về chữ thường trước khi so sánh
+        String normalizedQuery = normalizeString(query);  // Normalize the query
+        for (Product i : productList) {
+            String normalizedProductName = normalizeString(i.getName());  // Normalize the product name
+            if (normalizedProductName.contains(normalizedQuery)) {
                 searchProductList.add(i);
             }
         }
-        productAdapter = new ProductAdapter(getActivity(),searchProductList);
+        productAdapter = new ProductAdapter(getActivity(), searchProductList);
         rvProduct.setAdapter(productAdapter);
+    }
+
+    private String normalizeString(String input) {
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(normalized).replaceAll("").toLowerCase();
     }
 
 
