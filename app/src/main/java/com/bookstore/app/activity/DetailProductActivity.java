@@ -51,9 +51,7 @@ public class DetailProductActivity extends AppCompatActivity {
                 .into(cardViewProduct);
 
         nameProduct.setText(product.getName());
-        double number = product.getPrice();
-        String strNumber = Double.toString(number);
-        priceProduct.setText(strNumber);
+        priceProduct.setText(product.getPrice()  + " VNĐ");
         descripProduct.loadData(product.getDescription(), "text/html", "UTF-8");
 
         initListener();

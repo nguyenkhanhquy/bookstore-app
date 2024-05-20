@@ -31,6 +31,7 @@ Before you begin, ensure you have met the following requirements:
 - **Java Development Kit (JDK)**: Install Java Development Kit (JDK) 21 or higher. You can download it from [here](https://www.oracle.com/java/technologies/javase-downloads.html).
 - **Android Studio**: Download and install the latest version of Android Studio from [here](https://developer.android.com/studio).
 - **Git**: Install Git from [here](https://git-scm.com/).
+- **Android Device**: Ensure you have an Android device running Android 5.0 (Lollipop) or higher.
 
 ## Installation
 
