@@ -54,14 +54,14 @@ Before you begin, ensure you have met the following requirements:
 
 1. **Connect an Android device (optional)**:
 
-- You can run the project on a physical device by connecting it via USB. Ensure that USB debugging is enabled on your device.
-- Alternatively, you can use an Android emulator.
+    - You can run the project on a physical device by connecting it via USB. Ensure that USB debugging is enabled on your device.
+    - Alternatively, you can use an Android emulator.
 
 1. **Build and run the project**:
 
-- Click on the `Run` button (green play arrow) in the toolbar, or use the shortcut `Shift + F10`.
-- Select the device or emulator you want to run the project on.
-- Android Studio will build the project and install the app on your selected device/emulator.
+    - Click on the `Run` button (green play arrow) in the toolbar, or use the shortcut `Shift + F10`.
+    - Select the device or emulator you want to run the project on.
+    - Android Studio will build the project and install the app on your selected device/emulator.
 
 ## Project Structure
 
@@ -95,14 +95,14 @@ project-name/
 
 ## Contributors
 
-- [@nguyenkhanhquy](https://github.com/nguyenkhanhquy) - Nguyễn Khánh Quy - 21110282
-- [@AnhNguyet2003](https://github.com/AnhNguyet2003) - Nguyễn Trương Ánh Nguyệt - 21110264
-- [@MiuKay](https://github.com/MiuKay) - Võ Chí Khương - 21110221
-- [@VTNaad](https://github.com/VTNaad) - Võ Thế Dân - 21110149
+1. [@nguyenkhanhquy](https://github.com/nguyenkhanhquy) - Nguyễn Khánh Quy - 21110282
+1. [@AnhNguyet2003](https://github.com/AnhNguyet2003) - Nguyễn Trương Ánh Nguyệt - 21110264
+1. [@MiuKay](https://github.com/MiuKay) - Võ Chí Khương - 21110221
+1. [@VTNaad](https://github.com/VTNaad) - Võ Thế Dân - 21110149
 
 ## Author
 
-- Author Name: Nguyễn Khánh Quy
+- Author Name: `Nguyễn Khánh Quy`
 - Email: <nguyenkhanhquy123@gmail.com>
 
 ## License
