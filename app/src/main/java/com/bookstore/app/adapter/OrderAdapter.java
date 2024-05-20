@@ -186,9 +186,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 if (response.isSuccessful()) {
                     Order order = response.body();
                     if (orderTrackId == 2) {
-                        Toast.makeText(context, "Xác nhận đơn hàng có mã " + order.getId(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đã xác nhận đơn hàng có mã " + order.getId(), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(context, "Hủy đơn hàng có mã " + order.getId(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đã hủy đơn hàng có mã " + order.getId(), Toast.LENGTH_SHORT).show();
                     }
                     cancelListener.onOrderCancelled(); // Notify the fragment
                 } else {
